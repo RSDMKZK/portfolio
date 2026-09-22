@@ -22,11 +22,14 @@ export default function IntroVideo({ onComplete, videoSrc }: IntroVideoProps) {
   const primarySrc = videoSrc || "/intro.mp4"
 
   useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted
+    }
+  }, [isMuted])
+
+  useEffect(() => {
     const video = videoRef.current
     if (!video) return
-
-    // Ensure muted for browser autoplay policy success
-    video.muted = isMuted
 
     const playPromise = video.play()
     if (playPromise !== undefined) {

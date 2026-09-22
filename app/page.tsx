@@ -426,16 +426,20 @@ export default function Portfolio() {
           <div className="absolute top-1/4 left-1/5 w-60 h-60 bg-gradient-to-br from-purple-500 via-blue-500 to-pink-400 opacity-20 rounded-full blur-xl animate-blob1" style={{ willChange: 'transform' }} />
           <div className="absolute top-2/3 right-1/4 w-44 h-44 bg-gradient-to-br from-blue-400 via-purple-400 to-pink-500 opacity-15 rounded-full blur-xl animate-blob2" style={{ willChange: 'transform' }} />
           {/* Fewer floating dots */}
-          {Array.from({ length: 3 }).map((_, i) => (
+          {[
+            { width: '14px', height: '14px', top: '25%', left: '20%', animationDelay: '0.4s' },
+            { width: '12px', height: '12px', top: '70%', left: '75%', animationDelay: '1.2s' },
+            { width: '16px', height: '16px', top: '45%', left: '60%', animationDelay: '2.1s' },
+          ].map((dot, i) => (
             <div
               key={i}
               className="absolute bg-white rounded-full opacity-30 animate-float-dot"
               style={{
-                width: `${Math.random() * 10 + 8}px`,
-                height: `${Math.random() * 10 + 8}px`,
-                top: `${Math.random() * 80 + 10}%`,
-                left: `${Math.random() * 80 + 10}%`,
-                animationDelay: `${Math.random() * 3}s`,
+                width: dot.width,
+                height: dot.height,
+                top: dot.top,
+                left: dot.left,
+                animationDelay: dot.animationDelay,
                 willChange: 'transform',
               }}
             />
@@ -510,9 +514,9 @@ export default function Portfolio() {
           className="absolute bottom-10 right-10 z-20 max-w-md rounded-2xl px-6 py-4 shadow-lg flex items-center gap-2"
           style={{ minWidth: '260px' }}
         >
-          <span className="text-3xl md:text-4xl text-white/80 font-bold italic drop-shadow-lg">"</span>
+          <span className="text-3xl md:text-4xl text-white/80 font-bold italic drop-shadow-lg">&ldquo;</span>
           <span className="text-base md:text-lg text-white/90 font-medium text-left px-2">{motivationalQuotes[quoteIndex]}</span>
-          <span className="text-3xl md:text-4xl text-white/80 font-bold italic drop-shadow-lg">"</span>
+          <span className="text-3xl md:text-4xl text-white/80 font-bold italic drop-shadow-lg">&rdquo;</span>
         </motion.div>
       </section>
 
@@ -542,7 +546,7 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="about-text">
               <p className="text-xl md:text-2xl leading-relaxed text-gray-300 mb-8">
-                I'm a passionate creative developer who loves crafting digital experiences that push boundaries and
+                I&apos;m a passionate creative developer who loves crafting digital experiences that push boundaries and
                 inspire users.
               </p>
               <p className="text-lg leading-relaxed text-gray-400 mb-8">
@@ -690,30 +694,35 @@ export default function Portfolio() {
       <section className="pt-32 pb-32 px-4 md:px-8 lg:px-16 relative overflow-hidden" style={{ background: '#141414' }}>
         {/* Giraffe-like black patches */}
         <div className="absolute inset-0 z-0 pointer-events-none">
-          {Array.from({ length: 12 }).map((_, i) => {
-            // Randomize position, size, and border radius
-            const top = Math.random() * 80 + 5; // 5% to 85%
-            const left = Math.random() * 80 + 5;
-            const width = Math.random() * 80 + 60; // 60px to 140px
-            const height = Math.random() * 40 + 40; // 40px to 80px
-            const borderRadius = Math.random() * 40 + 30; // 30px to 70px
-            return (
-              <div
-                key={i}
-                style={{
-                  position: 'absolute',
-                  top: `${top}%`,
-                  left: `${left}%`,
-                  width,
-                  height,
-                  background: '#000',
-                  opacity: 0.18,
-                  borderRadius: `${borderRadius}%`,
-                  transform: `translate(-50%, -50%) rotate(${Math.random() * 360}deg)`,
-                }}
-              />
-            );
-          })}
+          {[
+            { top: '12%', left: '8%', width: 110, height: 60, borderRadius: '45%', rotate: '25deg' },
+            { top: '22%', left: '78%', width: 85, height: 75, borderRadius: '60%', rotate: '110deg' },
+            { top: '38%', left: '32%', width: 130, height: 50, borderRadius: '35%', rotate: '45deg' },
+            { top: '52%', left: '15%', width: 95, height: 65, borderRadius: '50%', rotate: '190deg' },
+            { top: '68%', left: '82%', width: 120, height: 55, borderRadius: '40%', rotate: '275deg' },
+            { top: '78%', left: '42%', width: 75, height: 70, borderRadius: '55%', rotate: '15deg' },
+            { top: '8%', left: '48%', width: 105, height: 45, borderRadius: '65%', rotate: '320deg' },
+            { top: '32%', left: '62%', width: 90, height: 60, borderRadius: '45%', rotate: '85deg' },
+            { top: '62%', left: '58%', width: 140, height: 65, borderRadius: '38%', rotate: '140deg' },
+            { top: '82%', left: '12%', width: 80, height: 75, borderRadius: '58%', rotate: '210deg' },
+            { top: '18%', left: '28%', width: 115, height: 50, borderRadius: '42%', rotate: '165deg' },
+            { top: '48%', left: '88%', width: 100, height: 55, borderRadius: '48%', rotate: '295deg' },
+          ].map((patch, i) => (
+            <div
+              key={i}
+              style={{
+                position: 'absolute',
+                top: patch.top,
+                left: patch.left,
+                width: patch.width,
+                height: patch.height,
+                background: '#000',
+                opacity: 0.18,
+                borderRadius: patch.borderRadius,
+                transform: `translate(-50%, -50%) rotate(${patch.rotate})`,
+              }}
+            />
+          ))}
         </div>
         <div className="max-w-6xl mx-auto">
           <motion.h2
@@ -878,7 +887,7 @@ export default function Portfolio() {
                     <Star key={i} size={20} className="text-yellow-400 fill-current" />
                   ))}
                 </div>
-                <p className="text-gray-300 mb-6 leading-relaxed">"{testimonial.text}"</p>
+                <p className="text-gray-300 mb-6 leading-relaxed">&ldquo;{testimonial.text}&rdquo;</p>
                 <div>
                   <h4 className="font-bold text-white">{testimonial.name}</h4>
                   <p className="text-gray-400 text-sm">{testimonial.role}</p>
@@ -911,7 +920,7 @@ export default function Portfolio() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            LET'S WORK
+            LET&apos;S WORK
           </motion.h2>
           <motion.h2
             className="text-5xl md:text-7xl font-black tracking-tighter mb-16"
@@ -930,7 +939,7 @@ export default function Portfolio() {
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            Ready to bring your ideas to life? Let's create something amazing together.
+            Ready to bring your ideas to life? Let&apos;s create something amazing together.
           </motion.p>
 
           <Link href="/contact">
@@ -956,12 +965,12 @@ export default function Portfolio() {
 function TabSwitcher() {
   const [skillTab, setSkillTab] = useState(0);
   const tabNames = ["Technical Skills", "Soft Skills", "Tools"];
-  const tabRefs = [useRef<HTMLButtonElement>(null), useRef<HTMLButtonElement>(null), useRef<HTMLButtonElement>(null)];
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const indicatorRef = useRef<HTMLDivElement>(null);
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
 
-  useLayoutEffect(() => {
-    const node = tabRefs[skillTab].current;
+  useEffect(() => {
+    const node = tabRefs.current[skillTab];
     if (node) {
       setIndicatorStyle({ left: node.offsetLeft, width: node.offsetWidth });
     }
@@ -969,7 +978,7 @@ function TabSwitcher() {
 
   return (
     <div className="relative flex flex-col items-center mb-14 w-full">
-      <div className="flex bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-lg px-2 py-2 gap-2 relative min-w-[320px]">
+      <div role="tablist" aria-label="Skills navigation" className="flex bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-lg px-2 py-2 gap-2 relative min-w-[320px]">
         {/* Animated indicator */}
         <div
           ref={indicatorRef}
@@ -979,10 +988,11 @@ function TabSwitcher() {
         {tabNames.map((tab, idx) => (
           <button
             key={tab}
-            ref={tabRefs[idx]}
+            ref={(el) => { tabRefs.current[idx] = el }}
             onClick={() => setSkillTab(idx)}
             className={`relative z-10 px-7 py-2 font-bold font-mono rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-400
               ${skillTab === idx ? 'text-white scale-105 bg-gradient-to-r from-purple-600/80 to-blue-600/80 shadow' : 'text-gray-300 hover:text-white hover:scale-105'}`}
+            role="tab"
             aria-selected={skillTab === idx}
             tabIndex={0}
             type="button"

@@ -7,6 +7,29 @@ import { motion } from "framer-motion"
 import { Mail, Phone, MapPin, Send, ArrowLeft, Github, Linkedin, Twitter } from "lucide-react"
 import Link from "next/link"
 
+const BACKGROUND_DOTS = [
+  { left: "12%", top: "18%", duration: 4.2, delay: 0.5 },
+  { left: "85%", top: "22%", duration: 3.8, delay: 1.2 },
+  { left: "34%", top: "67%", duration: 4.6, delay: 0.2 },
+  { left: "72%", top: "81%", duration: 3.5, delay: 1.8 },
+  { left: "19%", top: "45%", duration: 4.1, delay: 0.9 },
+  { left: "91%", top: "54%", duration: 3.9, delay: 1.5 },
+  { left: "48%", top: "12%", duration: 4.8, delay: 0.3 },
+  { left: "63%", top: "37%", duration: 3.6, delay: 1.1 },
+  { left: "27%", top: "89%", duration: 4.4, delay: 0.7 },
+  { left: "80%", top: "70%", duration: 3.7, delay: 1.9 },
+  { left: "5%", top: "33%", duration: 4.0, delay: 0.4 },
+  { left: "55%", top: "95%", duration: 4.5, delay: 1.3 },
+  { left: "42%", top: "48%", duration: 3.4, delay: 0.8 },
+  { left: "76%", top: "15%", duration: 4.7, delay: 1.6 },
+  { left: "23%", top: "74%", duration: 3.8, delay: 0.1 },
+  { left: "95%", top: "38%", duration: 4.3, delay: 1.4 },
+  { left: "15%", top: "92%", duration: 3.9, delay: 0.6 },
+  { left: "68%", top: "59%", duration: 4.9, delay: 1.7 },
+  { left: "38%", top: "28%", duration: 3.5, delay: 0.9 },
+  { left: "88%", top: "88%", duration: 4.1, delay: 1.0 },
+]
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -46,13 +69,13 @@ export default function ContactPage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
       {/* Animated Background Dots */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {BACKGROUND_DOTS.map((dot, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-white rounded-full opacity-30"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: dot.left,
+              top: dot.top,
             }}
             animate={{
               y: [-20, 20],
@@ -60,9 +83,9 @@ export default function ContactPage() {
               opacity: [0.3, 0.8, 0.3],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: dot.duration,
               repeat: Number.POSITIVE_INFINITY,
-              delay: Math.random() * 2,
+              delay: dot.delay,
             }}
           />
         ))}
@@ -98,7 +121,7 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Have a project in mind? Let's discuss how we can bring your vision to life.
+            Have a project in mind? Let&apos;s discuss how we can bring your vision to life.
           </motion.p>
 
           <div className="grid lg:grid-cols-2 gap-16">
@@ -209,7 +232,7 @@ export default function ContactPage() {
                     <Send className="text-white" size={24} />
                   </div>
                   <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
-                  <p className="text-purple-200">Thank you for reaching out. I'll get back to you soon!</p>
+                  <p className="text-purple-200">Thank you for reaching out. I&apos;ll get back to you soon!</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
