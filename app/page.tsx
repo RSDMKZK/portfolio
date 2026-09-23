@@ -22,11 +22,13 @@ import {
   Film,
   Menu,
   X,
+  Lock,
 } from "lucide-react"
 import Link from "next/link"
 import { AnimatePresence } from "framer-motion"
 import IntroVideo from "../components/IntroVideo"
 import BackgroundVideo from "../components/BackgroundVideo"
+import TestimonialsSection from "../components/TestimonialsSection"
 // import SplashCursor from "../components/SplashCursor";
 
 // Register GSAP plugins
@@ -742,6 +744,10 @@ export default function Portfolio() {
                 description: "Custom websites and web applications built with modern technologies",
               },
               {
+                title: "MOBILE APP DEV",
+                description: "Cross-platform and native iOS & Android applications crafted for high performance and smooth experiences",
+              },
+              {
                 title: "SCHOOL PROJECTS",
                 description: "Final year projects for university students including reports writing and presentations with code implementation and AI turnitin report bypass",
               },
@@ -839,64 +845,7 @@ export default function Portfolio() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="pt-32 pb-32 px-4 md:px-8 lg:px-16 relative overflow-hidden">
-        <div className="absolute inset-0 z-0 zebra-bg pointer-events-none"></div>
-        <div className="max-w-6xl mx-auto relative z-10">
-          <motion.h2
-            className="text-5xl md:text-7xl font-black tracking-tighter mb-16 text-center"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            TESTIMONIALS
-          </motion.h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                name: "ADEBANJI CALEB",
-                role: "CEO, COSTREAM",
-                text: "Siba delivered an exceptional website that exceeded our expectations. His attention to detail and creative vision is unmatched.",
-                rating: 5,
-              },
-              {
-                name: "OSTIN EMMANUEL",
-                role: "Founder, DesignCo",
-                text: "Working with siba was a game-changer for our business. The mobile app he built increased our user engagement by 300%.",
-                rating: 5,
-              },
-              {
-                name: "Emily Davis",
-                role: "Marketing Director",
-                text: "Professional, creative, and reliable. siba transformed our brand identity and created a stunning e-commerce platform.",
-                rating: 5,
-              },
-            ].map((testimonial, index) => (
-              <motion.div
-                key={testimonial.name}
-                className="bg-black p-8 rounded-lg border border-gray-800 hover:border-purple-500 transition-colors hover-lift cursor-pointer"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -8, scale: 1.03 }}
-              >
-                <div className="flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} size={20} className="text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <p className="text-gray-300 mb-6 leading-relaxed">&ldquo;{testimonial.text}&rdquo;</p>
-                <div>
-                  <h4 className="font-bold text-white">{testimonial.name}</h4>
-                  <p className="text-gray-400 text-sm">{testimonial.role}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TestimonialsSection />
 
       {/* Contact Section with Purple Background and White Dots */}
       <section id="contact" className="pt-32 pb-48 px-4 md:px-8 lg:px-16 bg-black relative overflow-hidden">
@@ -955,6 +904,20 @@ export default function Portfolio() {
               GET IN TOUCH
             </motion.div>
           </Link>
+
+          {/* Footer note & Admin link */}
+          <div className="mt-24 pt-8 border-t border-gray-900 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+            <p>© {new Date().getFullYear()} Abdullahi M Siba. All rights reserved.</p>
+            <div className="flex items-center gap-5">
+              <Link href="/contact" className="hover:text-purple-400 transition-colors">
+                Contact
+              </Link>
+              <Link href="/admin" className="hover:text-purple-400 transition-colors flex items-center gap-1.5 opacity-60 hover:opacity-100">
+                <Lock size={12} />
+                <span>Admin</span>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </div>

@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Send, ArrowLeft, Github, Linkedin, Twitter } from "lucide-react"
+import { Mail, Phone, MapPin, Send, ArrowLeft, Github, Linkedin, Twitter, Lock } from "lucide-react"
 import Link from "next/link"
 
 const BACKGROUND_DOTS = [
@@ -40,22 +40,46 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setErrorMessage(null)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    try {
+      const response = await fetch("/api/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      })
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+      const result = await response.json()
 
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false)
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to submit message")
+      }
+
+      setIsSubmitted(true)
       setFormData({ name: "", email: "", subject: "", message: "" })
-    }, 3000)
+
+      // Keep success message visible for 5 seconds
+      setTimeout(() => {
+        setIsSubmitted(false)
+      }, 5000)
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Something went wrong. Please try again."
+      setErrorMessage(msg)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -93,7 +117,7 @@ export default function ContactPage() {
 
       <div className="relative z-10">
         {/* Header */}
-        <header className="p-8">
+        <header className="p-8 flex items-center justify-between">
           <Link href="/">
             <motion.div
               className="flex items-center gap-2 text-white hover:text-purple-300 transition-colors cursor-pointer"
@@ -101,6 +125,16 @@ export default function ContactPage() {
             >
               <ArrowLeft size={24} />
               <span className="font-bold">Back to Portfolio</span>
+            </motion.div>
+          </Link>
+          <Link href="/admin">
+            <motion.div
+              className="flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full bg-black/40 border border-purple-500/30 text-purple-300 hover:text-white hover:border-purple-500 transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Lock size={14} />
+              <span>Admin Portal</span>
             </motion.div>
           </Link>
         </header>
@@ -235,7 +269,13 @@ export default function ContactPage() {
                   <p className="text-purple-200">Thank you for reaching out. I&apos;ll get back to you soon!</p>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <>
+                  {errorMessage && (
+                    <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-200 text-sm">
+                      {errorMessage}
+                    </div>
+                  )}
+                  <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-semibold mb-2">
@@ -321,6 +361,7 @@ export default function ContactPage() {
                     )}
                   </motion.button>
                 </form>
+                </>
               )}
             </motion.div>
           </div>
