@@ -22,7 +22,6 @@ import {
   Film,
   Menu,
   X,
-  Lock,
 } from "lucide-react"
 import Link from "next/link"
 import { AnimatePresence } from "framer-motion"
@@ -905,16 +904,22 @@ export default function Portfolio() {
             </motion.div>
           </Link>
 
-          {/* Footer note & Admin link */}
+          {/* Footer note */}
           <div className="mt-24 pt-8 border-t border-gray-900 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
-            <p>© {new Date().getFullYear()} Abdullahi M Siba. All rights reserved.</p>
+            <p
+              onClick={(e) => {
+                // Secret shortcut: triple-click copyright to open admin
+                if (e.detail === 3) {
+                  window.location.href = '/admin'
+                }
+              }}
+              className="select-none"
+            >
+              © {new Date().getFullYear()} Abdullahi M Siba. All rights reserved.
+            </p>
             <div className="flex items-center gap-5">
               <Link href="/contact" className="hover:text-purple-400 transition-colors">
                 Contact
-              </Link>
-              <Link href="/admin" className="hover:text-purple-400 transition-colors flex items-center gap-1.5 opacity-60 hover:opacity-100">
-                <Lock size={12} />
-                <span>Admin</span>
               </Link>
             </div>
           </div>

@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Send, ArrowLeft, Github, Linkedin, Twitter, Lock } from "lucide-react"
+import { Mail, Phone, MapPin, Send, ArrowLeft, Github, Linkedin, Twitter } from "lucide-react"
 import Link from "next/link"
 
 const BACKGROUND_DOTS = [
@@ -117,24 +117,14 @@ export default function ContactPage() {
 
       <div className="relative z-10">
         {/* Header */}
-        <header className="p-8 flex items-center justify-between">
+        <header className="p-8">
           <Link href="/">
             <motion.div
-              className="flex items-center gap-2 text-white hover:text-purple-300 transition-colors cursor-pointer"
+              className="flex items-center gap-2 text-white hover:text-purple-300 transition-colors cursor-pointer inline-flex"
               whileHover={{ x: -5 }}
             >
               <ArrowLeft size={24} />
               <span className="font-bold">Back to Portfolio</span>
-            </motion.div>
-          </Link>
-          <Link href="/admin">
-            <motion.div
-              className="flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full bg-black/40 border border-purple-500/30 text-purple-300 hover:text-white hover:border-purple-500 transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Lock size={14} />
-              <span>Admin Portal</span>
             </motion.div>
           </Link>
         </header>
