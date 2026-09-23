@@ -413,7 +413,7 @@ export default function Portfolio() {
       {/* Hero Section with Video Background and Parallax */}
       <section
         ref={heroRef}
-        className="relative h-screen flex items-center justify-center overflow-hidden pt-32 pb-32 px-4 md:px-8 lg:px-16"
+        className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden py-24 sm:py-32 px-4 sm:px-6 md:px-8 lg:px-16"
       >
         {/* Hero Background Video Loop */}
         <BackgroundVideo />
@@ -505,24 +505,23 @@ export default function Portfolio() {
         <div className="floating-element absolute top-40 right-32 w-6 h-6 bg-blue-500 rounded-full"></div>
         <div className="floating-element absolute bottom-32 left-1/4 w-3 h-3 bg-pink-500 rounded-full"></div>
 
-        {/* Floating Motivational Quote - move to absolute bottom right */}
+        {/* Floating Motivational Quote (Desktop view to keep mobile clean) */}
         <motion.div
           key={quoteIndex}
-          initial={{ opacity: 0, x: 40, y: 20 }}
+          initial={{ opacity: 0, x: -20, y: 20 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
-          exit={{ opacity: 0, x: 40, y: 20 }}
+          exit={{ opacity: 0, x: -20, y: 20 }}
           transition={{ duration: 0.8 }}
-          className="absolute bottom-10 right-10 z-20 max-w-md rounded-2xl px-6 py-4 shadow-lg flex items-center gap-2"
-          style={{ minWidth: '260px' }}
+          className="hidden lg:flex absolute bottom-8 left-8 z-20 max-w-sm rounded-2xl px-5 py-3 shadow-lg items-center gap-2 bg-black/50 backdrop-blur-md border border-white/10"
         >
-          <span className="text-3xl md:text-4xl text-white/80 font-bold italic drop-shadow-lg">&ldquo;</span>
-          <span className="text-base md:text-lg text-white/90 font-medium text-left px-2">{motivationalQuotes[quoteIndex]}</span>
-          <span className="text-3xl md:text-4xl text-white/80 font-bold italic drop-shadow-lg">&rdquo;</span>
+          <span className="text-2xl text-purple-400 font-bold italic">&ldquo;</span>
+          <span className="text-sm text-white/90 font-medium text-left">{motivationalQuotes[quoteIndex]}</span>
+          <span className="text-2xl text-purple-400 font-bold italic">&rdquo;</span>
         </motion.div>
       </section>
 
       {/* About Section */}
-      <section id="about" ref={aboutRef} className="about-section pt-32 pb-32 px-4 md:px-8 lg:px-16 relative overflow-hidden">
+      <section id="about" ref={aboutRef} className="about-section py-16 sm:py-24 md:py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="white-dot absolute top-10 left-10 w-2 h-2 bg-white rounded-full opacity-60"></div>
           <div className="white-dot absolute top-32 right-24 w-3 h-3 bg-white rounded-full opacity-40"></div>
@@ -535,7 +534,7 @@ export default function Portfolio() {
         </div>
         <div className="max-w-6xl mx-auto">
           <motion.h2
-            className="text-5xl md:text-7xl font-black tracking-tighter mb-16 text-center"
+            className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tight mb-10 sm:mb-16 text-center break-words"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -544,17 +543,17 @@ export default function Portfolio() {
             ABOUT ME
           </motion.h2>
 
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-16 items-center">
             <div className="about-text">
-              <p className="text-xl md:text-2xl leading-relaxed text-gray-300 mb-8">
+              <p className="text-lg sm:text-xl md:text-2xl leading-relaxed text-gray-300 mb-6 sm:mb-8">
                 I&apos;m a passionate creative developer who loves crafting digital experiences that push boundaries and
                 inspire users.
               </p>
-              <p className="text-lg leading-relaxed text-gray-400 mb-8">
+              <p className="text-base sm:text-lg leading-relaxed text-gray-400 mb-6 sm:mb-8">
                 With expertise in modern web technologies, I specialize in creating immersive, interactive webapps that
                 tell stories and engage audiences through motion and design.
               </p>
-              <div className="flex gap-6 mb-8">
+              <div className="flex gap-5 sm:gap-6 mb-6 sm:mb-8">
                 <motion.a
                   href="https://github.com/RSDMKZK"
                   target="_blank"
@@ -563,7 +562,7 @@ export default function Portfolio() {
                   whileHover={{ scale: 1.2 }}
                   title="GitHub Profile (RSDMKZK)"
                 >
-                  <Github size={32} />
+                  <Github size={28} className="sm:w-8 sm:h-8" />
                 </motion.a>
                 <motion.a
                   href="https://www.linkedin.com/in/abdullahi-siba-8a3293392"
@@ -573,7 +572,7 @@ export default function Portfolio() {
                   whileHover={{ scale: 1.2 }}
                   title="LinkedIn Profile"
                 >
-                  <Linkedin size={32} />
+                  <Linkedin size={28} className="sm:w-8 sm:h-8" />
                 </motion.a>
                 <motion.a
                   href="mailto:sibaabdullahi001@gmail.com"
@@ -581,17 +580,17 @@ export default function Portfolio() {
                   whileHover={{ scale: 1.2 }}
                   title="Send Email"
                 >
-                  <Mail size={32} />
+                  <Mail size={28} className="sm:w-8 sm:h-8" />
                 </motion.a>
               </div>
               <a
                 href="/cv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold shadow-md hover:from-purple-600 hover:to-blue-600 transition-colors text-lg mt-2"
+                className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold shadow-md hover:from-purple-600 hover:to-blue-600 transition-colors text-base sm:text-lg mt-2 cursor-pointer"
                 download
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m0 0l-6-6m6 6l6-6" />
                 </svg>
                 My CV
@@ -605,7 +604,7 @@ export default function Portfolio() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="w-full max-w-[340px] sm:max-w-[400px] h-[450px] sm:h-[520px] mx-auto bg-gradient-to-br from-purple-600 to-blue-600 rounded-[2.5rem] flex items-center justify-center p-2">
+              <div className="w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[380px] md:max-w-[400px] h-[360px] sm:h-[480px] md:h-[520px] mx-auto bg-gradient-to-br from-purple-600 to-blue-600 rounded-[2.5rem] flex items-center justify-center p-2">
                 <div className="w-full h-full bg-black rounded-[2.2rem] flex items-center justify-center overflow-hidden">
                   <img src="/profile.png" alt="Abdullahi Siba" className="w-full h-full object-cover rounded-[2.2rem]" />
                 </div>
@@ -616,11 +615,11 @@ export default function Portfolio() {
       </section>
 
       {/* Experience Section */}
-      <section className="pt-10 pb-10 px-4 md:px-8 lg:px-16 text-white relative overflow-hidden">
+      <section className="py-12 sm:py-16 px-4 md:px-8 lg:px-16 text-white relative overflow-hidden">
         <div className="absolute inset-0 z-0 zebra-bg pointer-events-none"></div>
         <div className="max-w-6xl mx-auto relative z-10">
           <motion.h2
-            className="text-5xl md:text-7xl font-black tracking-tighter mb-16 text-center text-white"
+            className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tight mb-10 sm:mb-16 text-center text-white break-words"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -628,40 +627,40 @@ export default function Portfolio() {
           >
             {expTabs[expTab].title}
           </motion.h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {expTabs[expTab].stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
-                className="text-center"
+                className="text-center p-3 sm:p-4 rounded-xl bg-black/40 sm:bg-transparent border border-white/5 sm:border-none"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="mb-4">
-                  <stat.icon size={48} className="mx-auto text-white" />
+                <div className="mb-2 sm:mb-4">
+                  <stat.icon className="mx-auto text-purple-400 sm:text-white w-8 h-8 sm:w-12 sm:h-12" />
                 </div>
-                <h3 className="text-4xl font-black text-white mb-2">{stat.number}</h3>
-                <p className="text-white font-bold tracking-wide">{stat.label}</p>
+                <h3 className="text-2xl sm:text-4xl font-black text-white mb-1 sm:mb-2">{stat.number}</h3>
+                <p className="text-white/80 font-bold tracking-wide text-xs sm:text-sm md:text-base">{stat.label}</p>
               </motion.div>
             ))}
           </div>
           {/* Swipe Button BELOW content */}
-          <div className="flex justify-center mt-10">
+          <div className="flex justify-center mt-8 sm:mt-10">
             <button
-              className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-lg hover:bg-gray-200 transition-colors"
+              className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white flex items-center justify-center shadow-lg hover:bg-gray-200 transition-colors cursor-pointer"
               style={{ border: 'none' }}
               onClick={() => setExpTab((expTab + 1) % expTabs.length)}
               aria-label="Swipe"
             >
-              <ArrowRight className="text-black w-8 h-8" />
+              <ArrowRight className="text-black w-6 h-6 sm:w-8 sm:h-8" />
             </button>
           </div>
         </div>
       </section>
 
       {/* Skills Section with Sticky Elements */}
-      <section id="skills" className="skills-section pt-32 pb-48 px-4 md:px-8 lg:px-16 relative overflow-hidden bg-black">
+      <section id="skills" className="skills-section py-16 sm:py-24 md:py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden bg-black">
         <div className="absolute inset-0">
           <div className="white-dot absolute top-12 left-16 w-2 h-2 bg-white rounded-full opacity-60"></div>
           <div className="white-dot absolute top-36 right-28 w-3 h-3 bg-white rounded-full opacity-40"></div>
@@ -674,7 +673,7 @@ export default function Portfolio() {
         </div>
         <div className="max-w-6xl mx-auto">
           <motion.h2
-            className="text-5xl md:text-7xl font-black tracking-tighter mb-10 text-center"
+            className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tight mb-8 sm:mb-10 text-center break-words"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -683,7 +682,7 @@ export default function Portfolio() {
             SKILLS
           </motion.h2>
           {/* Centered Skills Grid/TabSwitcher */}
-          <div className="flex flex-col items-center justify-center w-full mt-16">
+          <div className="flex flex-col items-center justify-center w-full mt-8 sm:mt-16">
             <div className="w-full max-w-4xl px-4">
               <TabSwitcher />
             </div>
@@ -692,7 +691,7 @@ export default function Portfolio() {
       </section>
 
       {/* Services Section */}
-      <section className="pt-32 pb-32 px-4 md:px-8 lg:px-16 relative overflow-hidden" style={{ background: '#141414' }}>
+      <section className="py-16 sm:py-24 md:py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden" style={{ background: '#141414' }}>
         {/* Giraffe-like black patches */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           {[
@@ -727,7 +726,7 @@ export default function Portfolio() {
         </div>
         <div className="max-w-6xl mx-auto">
           <motion.h2
-            className="text-5xl md:text-7xl font-black tracking-tighter mb-16 text-center"
+            className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tight mb-10 sm:mb-16 text-center break-words"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -736,7 +735,7 @@ export default function Portfolio() {
             SERVICES
           </motion.h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
             {[
               {
                 title: "WEB DEVELOPMENT",
@@ -773,15 +772,15 @@ export default function Portfolio() {
             ].map((service, index) => (
               <motion.div
                 key={service.title}
-                className="bg-black p-8 rounded-lg border border-gray-800 hover:border-purple-500 transition-colors cursor-pointer hover:scale-[1.04] hover:-translate-y-2 hover:shadow-xl duration-300"
+                className="bg-black p-6 sm:p-8 rounded-xl sm:rounded-2xl border border-gray-800 hover:border-purple-500 transition-colors cursor-pointer hover:scale-[1.02] hover:-translate-y-1 hover:shadow-xl duration-300"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
               >
-                <h3 className="text-2xl font-black tracking-wide mb-4 text-purple-400">{service.title}</h3>
-                <p className="text-gray-400 mb-6 leading-relaxed">{service.description}</p>
+                <h3 className="text-xl sm:text-2xl font-black tracking-wide mb-3 sm:mb-4 text-purple-400">{service.title}</h3>
+                <p className="text-gray-400 text-sm sm:text-base mb-2 leading-relaxed">{service.description}</p>
               </motion.div>
             ))}
           </div>
@@ -789,7 +788,7 @@ export default function Portfolio() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" ref={projectsRef} className="projects-section pt-32 pb-32 px-4 md:px-8 lg:px-16 relative overflow-hidden bg-black">
+      <section id="projects" ref={projectsRef} className="projects-section py-16 sm:py-24 md:py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden bg-black">
         <div className="absolute inset-0"></div>
         <div className="absolute inset-0">
           <div className="white-dot absolute top-20 left-20 w-2 h-2 bg-white rounded-full opacity-60"></div>
@@ -803,7 +802,7 @@ export default function Portfolio() {
         </div>
         <div className="max-w-6xl mx-auto relative z-10">
           <motion.h2
-            className="text-5xl md:text-7xl font-black tracking-tighter mb-16 text-center"
+            className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tight mb-10 sm:mb-16 text-center break-words"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -812,7 +811,7 @@ export default function Portfolio() {
             PROJECTS
           </motion.h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[
               {
                 title: "E-COMMERCE PLATFORM",
@@ -847,7 +846,7 @@ export default function Portfolio() {
       <TestimonialsSection />
 
       {/* Contact Section with Purple Background and White Dots */}
-      <section id="contact" className="pt-32 pb-48 px-4 md:px-8 lg:px-16 bg-black relative overflow-hidden">
+      <section id="contact" className="py-16 sm:py-24 md:py-32 px-4 md:px-8 lg:px-16 bg-black relative overflow-hidden">
         {/* Animated White Dots */}
         <div className="absolute inset-0">
           <div className="white-dot absolute top-20 left-20 w-2 h-2 bg-white rounded-full opacity-60"></div>
@@ -862,7 +861,7 @@ export default function Portfolio() {
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.h2
-            className="text-5xl md:text-7xl font-black tracking-tighter mb-8"
+            className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tight mb-2 sm:mb-4 text-center break-words"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -871,7 +870,7 @@ export default function Portfolio() {
             LET&apos;S WORK
           </motion.h2>
           <motion.h2
-            className="text-5xl md:text-7xl font-black tracking-tighter mb-16"
+            className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tight mb-8 sm:mb-12 text-center break-words"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -881,7 +880,7 @@ export default function Portfolio() {
           </motion.h2>
 
           <motion.p
-            className="text-xl md:text-2xl text-purple-100 mb-12 max-w-2xl mx-auto"
+            className="text-base sm:text-lg md:text-2xl text-purple-100 mb-8 sm:mb-12 max-w-2xl mx-auto px-2"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -905,7 +904,7 @@ export default function Portfolio() {
           </Link>
 
           {/* Footer note */}
-          <div className="mt-24 pt-8 border-t border-gray-900 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+          <div className="mt-16 sm:mt-24 pt-6 sm:pt-8 border-t border-gray-900 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4 text-center sm:text-left">
             <p
               onClick={(e) => {
                 // Secret shortcut: triple-click copyright to open admin
@@ -945,12 +944,12 @@ function TabSwitcher() {
   }, [skillTab]);
 
   return (
-    <div className="relative flex flex-col items-center mb-14 w-full">
-      <div role="tablist" aria-label="Skills navigation" className="flex bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-lg px-2 py-2 gap-2 relative min-w-[320px]">
+    <div className="relative flex flex-col items-center mb-10 sm:mb-14 w-full">
+      <div role="tablist" aria-label="Skills navigation" className="flex flex-wrap sm:flex-nowrap justify-center bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl sm:rounded-full shadow-lg p-1.5 sm:p-2 gap-1.5 sm:gap-2 relative max-w-full">
         {/* Animated indicator */}
         <div
           ref={indicatorRef}
-          className="absolute top-1 left-0 h-[calc(100%-0.5rem)] rounded-full bg-gradient-to-r from-purple-500/80 to-blue-500/80 shadow-lg transition-all duration-500 ease-[cubic-bezier(.4,2,.6,1)] z-0"
+          className="absolute top-1 left-0 h-[calc(100%-0.5rem)] rounded-full bg-gradient-to-r from-purple-500/80 to-blue-500/80 shadow-lg transition-all duration-500 ease-[cubic-bezier(.4,2,.6,1)] z-0 hidden sm:block"
           style={{ left: indicatorStyle.left, width: indicatorStyle.width, pointerEvents: 'none' }}
         />
         {tabNames.map((tab, idx) => (
@@ -958,8 +957,8 @@ function TabSwitcher() {
             key={tab}
             ref={(el) => { tabRefs.current[idx] = el }}
             onClick={() => setSkillTab(idx)}
-            className={`relative z-10 px-7 py-2 font-bold font-mono rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-400
-              ${skillTab === idx ? 'text-white scale-105 bg-gradient-to-r from-purple-600/80 to-blue-600/80 shadow' : 'text-gray-300 hover:text-white hover:scale-105'}`}
+            className={`relative z-10 px-3.5 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm md:text-base font-bold font-mono rounded-xl sm:rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-400 cursor-pointer
+              ${skillTab === idx ? 'text-white scale-102 sm:scale-105 bg-gradient-to-r from-purple-600/80 to-blue-600/80 shadow' : 'text-gray-300 hover:text-white'}`}
             role="tab"
             aria-selected={skillTab === idx}
             tabIndex={0}
@@ -970,7 +969,7 @@ function TabSwitcher() {
         ))}
       </div>
       {/* Tab Content with smooth fade/slide */}
-      <div className="w-full mt-12">
+      <div className="w-full mt-8 sm:mt-12">
         <AnimatePresence mode="wait">
           <TabContent key={skillTab} skillTab={skillTab} />
         </AnimatePresence>
@@ -990,7 +989,7 @@ function TabContent({ skillTab }: { skillTab: number }) {
       transition={{ duration: 0.5, ease: [0.4, 2, 0.6, 1] }}
     >
       {skillTab === 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 w-full">
           {[
             { icon: Code, title: "FRONTEND", skills: ["React", "Next.js", "flutter", "Tailwind"] },
             { icon: Palette, title: "DESIGN", skills: ["Figma", "prompting", "UI/UX", "ReactBits"] },
@@ -999,20 +998,20 @@ function TabContent({ skillTab }: { skillTab: number }) {
           ].map((category, index) => (
             <motion.div
               key={category.title}
-              className="text-center bg-black/80 rounded-2xl p-8 shadow-md hover:shadow-lg transition-all duration-300 w-full"
+              className="text-center bg-black/80 rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-lg transition-all duration-300 w-full border border-gray-900"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <div className="mb-6">
-                <category.icon size={52} className="mx-auto text-purple-400" />
+              <div className="mb-4 sm:mb-6">
+                <category.icon className="mx-auto text-purple-400 w-10 h-10 sm:w-12 sm:h-12" />
               </div>
-              <h3 className="text-2xl font-black tracking-wide mb-4 text-white">{category.title}</h3>
+              <h3 className="text-xl sm:text-2xl font-black tracking-wide mb-3 sm:mb-4 text-white">{category.title}</h3>
               <div className="space-y-3">
                 {category.skills.map((skill) => (
                   <div key={skill} className="relative">
-                    <div className="text-base text-gray-200 mb-1 font-semibold tracking-wide">{skill}</div>
+                    <div className="text-sm sm:text-base text-gray-200 mb-1 font-semibold tracking-wide">{skill}</div>
                     <div className="w-full bg-gray-700 h-1.5 rounded-full">
                       <div
                         className="skills-progress h-1.5 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full"
@@ -1027,7 +1026,7 @@ function TabContent({ skillTab }: { skillTab: number }) {
         </div>
       )}
       {skillTab === 1 && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6 md:gap-8 mb-12 sm:mb-16">
           {[
             'Communication',
             'Problem Solving',
@@ -1040,7 +1039,7 @@ function TabContent({ skillTab }: { skillTab: number }) {
           ].map((skill, index) => (
             <motion.div
               key={skill}
-              className="bg-black/80 border border-blue-600 rounded-2xl p-7 text-center text-white font-bold text-lg shadow-md transition-all duration-300 cursor-pointer hover:scale-[1.04] hover:-translate-y-2 hover:border-blue-400 hover:shadow-xl"
+              className="bg-black/80 border border-blue-600 rounded-xl sm:rounded-2xl p-4 sm:p-7 text-center text-white font-bold text-sm sm:text-base md:text-lg shadow-md transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:-translate-y-1 hover:border-blue-400 hover:shadow-xl"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
@@ -1052,7 +1051,7 @@ function TabContent({ skillTab }: { skillTab: number }) {
         </div>
       )}
       {skillTab === 2 && (
-        <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5 sm:gap-4 md:gap-6 mb-8">
           {[
             'v0.dev',
             'Git',
@@ -1081,10 +1080,10 @@ function TabContent({ skillTab }: { skillTab: number }) {
           ].map((tool, index) => (
             <motion.div
               key={tool}
-              className="bg-black/80 border border-purple-600 rounded-2xl p-5 text-center text-white font-semibold text-base shadow-md transition-all duration-300 cursor-pointer hover:scale-[1.04] hover:-translate-y-2 hover:border-purple-400 hover:shadow-xl"
+              className="bg-black/80 border border-purple-600/70 rounded-xl sm:rounded-2xl p-3 sm:p-5 text-center text-white font-semibold text-xs sm:text-sm md:text-base shadow-md transition-all duration-300 cursor-pointer hover:scale-[1.04] hover:-translate-y-1 hover:border-purple-400 hover:shadow-xl truncate"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.03 }}
+              transition={{ duration: 0.4, delay: index * 0.02 }}
               viewport={{ once: true }}
             >
               {tool}

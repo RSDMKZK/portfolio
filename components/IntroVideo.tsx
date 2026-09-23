@@ -105,10 +105,10 @@ export default function IntroVideo({ onComplete, videoSrc }: IntroVideoProps) {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.8)_100%)] pointer-events-none" />
 
       {/* Header Bar inside Intro */}
-      <div className="relative z-10 flex justify-between items-center px-6 py-6 md:px-12">
-        <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
-          <Sparkles className="w-5 h-5 text-purple-400 animate-pulse" />
-          <span className="text-xs md:text-sm font-semibold tracking-widest text-purple-200 uppercase">
+      <div className="relative z-10 flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6 md:px-12">
+        <div className="flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/20">
+          <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400 animate-pulse" />
+          <span className="text-[10px] sm:text-xs md:text-sm font-semibold tracking-widest text-purple-200 uppercase">
             Experience Intro
           </span>
         </div>
@@ -116,10 +116,10 @@ export default function IntroVideo({ onComplete, videoSrc }: IntroVideoProps) {
         {/* Skip Button */}
         <button
           onClick={onComplete}
-          className="group relative flex items-center gap-2 bg-white/15 hover:bg-white/25 active:scale-95 text-white font-bold px-6 py-3 rounded-full border border-white/30 backdrop-blur-lg transition-all shadow-2xl overflow-hidden"
+          className="group relative flex items-center gap-1.5 sm:gap-2 bg-white/15 hover:bg-white/25 active:scale-95 text-white font-bold px-3.5 sm:px-6 py-1.5 sm:py-3 rounded-full border border-white/30 backdrop-blur-lg transition-all shadow-2xl overflow-hidden cursor-pointer"
         >
-          <span className="relative z-10 tracking-wider text-sm font-semibold">SKIP INTRO</span>
-          <SkipForward className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          <span className="relative z-10 tracking-wider text-xs sm:text-sm font-semibold">SKIP INTRO</span>
+          <SkipForward className="relative z-10 w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
           <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </button>
       </div>
@@ -130,7 +130,7 @@ export default function IntroVideo({ onComplete, videoSrc }: IntroVideoProps) {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className="inline-flex items-center gap-2 mb-4 px-5 py-2 rounded-full bg-purple-500/20 border border-purple-400/40 backdrop-blur-md text-purple-300 text-xs md:text-sm font-medium tracking-widest uppercase"
+          className="inline-flex items-center gap-2 mb-4 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-purple-500/20 border border-purple-400/40 backdrop-blur-md text-purple-300 text-xs md:text-sm font-medium tracking-widest uppercase"
         >
           <Film className="w-4 h-4 text-purple-300" />
           Interactive Portfolio Showcase
@@ -140,7 +140,7 @@ export default function IntroVideo({ onComplete, videoSrc }: IntroVideoProps) {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="text-5xl md:text-8xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-purple-400 mb-4 drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]"
+          className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-purple-400 mb-4 drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]"
         >
           ABDULLAHI SIBA
         </motion.h1>
@@ -165,28 +165,30 @@ export default function IntroVideo({ onComplete, videoSrc }: IntroVideoProps) {
           />
         </div>
 
-        <div className="flex justify-between items-center text-xs md:text-sm text-gray-300">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-3 text-xs md:text-sm text-gray-300">
+          <div className="flex items-center gap-3 sm:gap-4">
             <button
               onClick={togglePlay}
-              className="p-3 bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-md transition-colors border border-white/20"
+              className="p-2 sm:p-3 bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-md transition-colors border border-white/20 cursor-pointer"
               title={isPlaying ? "Pause" : "Play"}
+              aria-label={isPlaying ? "Pause" : "Play"}
             >
-              {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
+              {isPlaying ? <Pause className="w-4 h-4 sm:w-5 sm:h-5" /> : <Play className="w-4 h-4 sm:w-5 sm:h-5 ml-0.5" />}
             </button>
 
             <button
               onClick={toggleMute}
-              className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-md transition-colors border border-white/20 font-medium"
+              className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-md transition-colors border border-white/20 font-medium cursor-pointer"
+              aria-label={isMuted ? "Unmute Sound" : "Mute Sound"}
             >
               {isMuted ? (
                 <>
-                  <VolumeX className="w-4 h-4 text-rose-400" />
-                  <span>Unmute Sound</span>
+                  <VolumeX className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-400" />
+                  <span>Unmute</span>
                 </>
               ) : (
                 <>
-                  <Volume2 className="w-4 h-4 text-emerald-400" />
+                  <Volume2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" />
                   <span>Sound On</span>
                 </>
               )}
@@ -195,7 +197,7 @@ export default function IntroVideo({ onComplete, videoSrc }: IntroVideoProps) {
 
           <button
             onClick={onComplete}
-            className="text-purple-300 hover:text-white font-medium underline underline-offset-4 transition-colors"
+            className="text-purple-300 hover:text-white font-medium underline underline-offset-4 transition-colors text-xs sm:text-sm cursor-pointer"
           >
             Enter Main Site &rarr;
           </button>

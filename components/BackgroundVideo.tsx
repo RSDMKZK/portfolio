@@ -86,37 +86,41 @@ export default function BackgroundVideo({
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.8)_100%)]" />
 
       {/* Floating Interactive Video Control Pill (bottom-right of Hero) */}
-      <div className="absolute bottom-6 right-6 z-30 pointer-events-auto flex items-center gap-2 bg-black/40 hover:bg-black/70 backdrop-blur-xl border border-white/20 p-2 rounded-full shadow-2xl transition-all">
+      <div className="absolute bottom-3 right-3 sm:bottom-6 sm:right-6 z-30 pointer-events-auto flex items-center gap-1 sm:gap-2 bg-black/60 hover:bg-black/80 backdrop-blur-xl border border-white/20 p-1 sm:p-2 rounded-full shadow-2xl transition-all scale-90 sm:scale-100 origin-bottom-right">
         <button
           onClick={togglePlay}
-          className="p-2 hover:bg-white/20 rounded-full transition-colors text-white"
+          className="p-1.5 sm:p-2 hover:bg-white/20 rounded-full transition-colors text-white"
           title={isPlaying ? "Pause Background Video" : "Play Background Video"}
+          aria-label={isPlaying ? "Pause Background Video" : "Play Background Video"}
         >
-          {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
+          {isPlaying ? <Pause className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> : <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-0.5" />}
         </button>
 
         <button
           onClick={toggleMute}
-          className="p-2 hover:bg-white/20 rounded-full transition-colors text-white"
+          className="p-1.5 sm:p-2 hover:bg-white/20 rounded-full transition-colors text-white"
           title={isMuted ? "Unmute Background Sound" : "Mute Background Sound"}
+          aria-label={isMuted ? "Unmute Background Sound" : "Mute Background Sound"}
         >
-          {isMuted ? <VolumeX className="w-4 h-4 text-rose-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
+          {isMuted ? <VolumeX className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-400" /> : <Volume2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" />}
         </button>
 
         <button
           onClick={() => setOpacity(prev => (prev >= 0.85 ? 0.35 : prev + 0.25))}
-          className="p-2 hover:bg-white/20 rounded-full transition-colors text-white"
+          className="p-1.5 sm:p-2 hover:bg-white/20 rounded-full transition-colors text-white"
           title="Adjust Background Contrast"
+          aria-label="Adjust Background Contrast"
         >
-          <Video className="w-4 h-4 text-purple-400" />
+          <Video className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-400" />
         </button>
 
         <button
           onClick={() => setShowVideo(!showVideo)}
-          className="p-2 hover:bg-white/20 rounded-full transition-colors text-white"
+          className="p-1.5 sm:p-2 hover:bg-white/20 rounded-full transition-colors text-white"
           title={showVideo ? "Hide Video Background" : "Show Video Background"}
+          aria-label={showVideo ? "Hide Video Background" : "Show Video Background"}
         >
-          {showVideo ? <Eye className="w-4 h-4 text-blue-400" /> : <EyeOff className="w-4 h-4 text-gray-400" />}
+          {showVideo ? <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-400" /> : <EyeOff className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-400" />}
         </button>
       </div>
     </div>

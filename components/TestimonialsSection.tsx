@@ -100,13 +100,13 @@ export default function TestimonialsSection() {
   }
 
   return (
-    <section id="testimonials" className="pt-32 pb-32 px-4 md:px-8 lg:px-16 relative overflow-hidden">
+    <section id="testimonials" className="py-16 sm:py-24 md:py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden">
       <div className="absolute inset-0 z-0 zebra-bg pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-16">
           <motion.h2
-            className="text-5xl md:text-7xl font-black tracking-tighter mb-4 text-center"
+            className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tight mb-4 text-center break-words"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -115,7 +115,7 @@ export default function TestimonialsSection() {
             TESTIMONIALS
           </motion.h2>
           <motion.p
-            className="text-gray-400 text-lg max-w-xl mx-auto mb-8"
+            className="text-gray-400 text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-6 sm:mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
@@ -126,7 +126,7 @@ export default function TestimonialsSection() {
 
           <motion.button
             onClick={() => setIsModalOpen(true)}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold hover:from-purple-500 hover:to-blue-500 shadow-lg shadow-purple-600/30 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm sm:text-base font-semibold hover:from-purple-500 hover:to-blue-500 shadow-lg shadow-purple-600/30 hover:scale-105 active:scale-95 transition-all cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -136,11 +136,11 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id || `${testimonial.name}-${index}`}
-              className="bg-black/90 backdrop-blur-sm p-8 rounded-2xl border border-gray-800 hover:border-purple-500/80 transition-all duration-300 hover-lift flex flex-col justify-between shadow-xl"
+              className="bg-black/90 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-gray-800 hover:border-purple-500/80 transition-all duration-300 hover-lift flex flex-col justify-between shadow-xl"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: Math.min(index * 0.1, 0.5) }}
@@ -199,7 +199,7 @@ export default function TestimonialsSection() {
             />
 
             <motion.div
-              className="relative w-full max-w-lg bg-zinc-950 border border-purple-500/40 rounded-2xl p-6 md:p-8 shadow-2xl z-10 overflow-hidden"
+              className="relative w-full max-w-lg bg-zinc-950 border border-purple-500/40 rounded-2xl p-5 sm:p-8 shadow-2xl z-10 max-h-[90vh] overflow-y-auto"
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}

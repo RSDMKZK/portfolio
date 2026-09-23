@@ -37,9 +37,10 @@ body {
   background: #555;
 }
 
-/* Smooth animations */
-* {
-  transition: all 0.3s ease;
+/* Smooth interactive transitions without breaking layout on mobile */
+a, button, input, textarea, select {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+  touch-action: manipulation;
 }
 
 /* Typography */

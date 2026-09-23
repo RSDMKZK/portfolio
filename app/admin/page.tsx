@@ -290,25 +290,25 @@ export default function AdminDashboardPage() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Top Navbar */}
-      <header className="sticky top-0 z-30 bg-black/80 backdrop-blur-md border-b border-gray-800 px-6 py-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Link href="/" className="text-gray-400 hover:text-white transition-colors">
-              <ArrowLeft size={20} />
+      <header className="sticky top-0 z-30 bg-black/80 backdrop-blur-md border-b border-gray-800 px-4 sm:px-6 py-3 sm:py-4">
+        <div className="max-w-7xl mx-auto flex flex-wrap sm:flex-nowrap items-center justify-between gap-3">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <Link href="/" className="text-gray-400 hover:text-white transition-colors p-1" title="Back to Portfolio">
+              <ArrowLeft size={18} />
             </Link>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-lg font-black tracking-tight text-white">Abdullahi Siba</h1>
+                <h1 className="text-base sm:text-lg font-black tracking-tight text-white">Abdullahi Siba</h1>
                 <span className="text-[10px] font-mono uppercase bg-purple-950 border border-purple-500/40 text-purple-300 px-2 py-0.5 rounded-full">
-                  Admin Portal
+                  Admin
                 </span>
               </div>
-              <p className="text-xs text-gray-400">Client Inquiries & Testimonials Hub</p>
+              <p className="text-[11px] sm:text-xs text-gray-400">Client Inquiries & Testimonials Hub</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-gray-800 text-xs text-gray-300">
+          <div className="flex items-center gap-2 sm:gap-3 ml-auto">
+            <div className="hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-gray-800 text-xs text-gray-300">
               <Database size={13} className={isSupabaseConnected ? 'text-emerald-400' : 'text-amber-400'} />
               <span>{isSupabaseConnected ? 'Supabase Connected' : 'Local Buffer Mode'}</span>
             </div>
@@ -316,17 +316,17 @@ export default function AdminDashboardPage() {
             <button
               onClick={refreshData}
               disabled={isVerifying}
-              className="p-2 rounded-lg bg-zinc-900 border border-gray-800 hover:border-gray-700 text-gray-300 hover:text-white transition-colors cursor-pointer"
+              className="p-1.5 sm:p-2 rounded-lg bg-zinc-900 border border-gray-800 hover:border-gray-700 text-gray-300 hover:text-white transition-colors cursor-pointer"
               title="Refresh inbox"
             >
-              <RefreshCw size={16} className={isVerifying ? 'animate-spin' : ''} />
+              <RefreshCw size={15} className={isVerifying ? 'animate-spin' : ''} />
             </button>
 
             <button
               onClick={handleLogout}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-red-950/40 border border-red-800/50 text-red-300 hover:bg-red-900/60 hover:text-white text-xs font-semibold transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-950/40 border border-red-800/50 text-red-300 hover:bg-red-900/60 hover:text-white text-xs font-semibold transition-colors cursor-pointer"
             >
-              <LogOut size={14} />
+              <LogOut size={13} />
               <span>Logout</span>
             </button>
           </div>
@@ -334,7 +334,7 @@ export default function AdminDashboardPage() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Metric Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
           <div className="p-6 rounded-2xl bg-zinc-950 border border-gray-800 shadow-lg">
@@ -656,28 +656,28 @@ export default function AdminDashboardPage() {
                 {selectedMessage.message}
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-gray-900">
+              <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-4 border-t border-gray-900">
                 <button
                   type="button"
                   onClick={() => deleteMessage(selectedMessage.id)}
-                  className="px-4 py-2 rounded-xl text-red-400 hover:text-red-300 hover:bg-red-950/30 text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
+                  className="px-4 py-2.5 rounded-xl text-red-400 hover:text-red-300 hover:bg-red-950/30 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
                 >
                   <Trash2 size={15} />
                   <span>Delete Message</span>
                 </button>
 
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
                   <button
                     type="button"
                     onClick={() => toggleReadStatus(selectedMessage)}
-                    className="px-4 py-2 rounded-xl border border-gray-800 hover:border-gray-700 text-xs font-semibold text-gray-300 hover:text-white transition-colors cursor-pointer"
+                    className="px-4 py-2.5 rounded-xl border border-gray-800 hover:border-gray-700 text-xs font-semibold text-gray-300 hover:text-white transition-colors cursor-pointer text-center"
                   >
                     Mark as {selectedMessage.read ? 'Unread' : 'Read'}
                   </button>
 
                   <a
                     href={`mailto:${selectedMessage.email}?subject=Re: ${encodeURIComponent(selectedMessage.subject)}`}
-                    className="px-5 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs font-semibold hover:from-purple-500 hover:to-blue-500 flex items-center gap-2 shadow-md shadow-purple-600/30 transition-all"
+                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs font-semibold hover:from-purple-500 hover:to-blue-500 flex items-center justify-center gap-2 shadow-md shadow-purple-600/30 transition-all text-center"
                   >
                     <Send size={14} />
                     <span>Reply via Email</span>

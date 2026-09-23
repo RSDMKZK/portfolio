@@ -129,9 +129,9 @@ export default function ContactPage() {
           </Link>
         </header>
 
-        <div className="max-w-6xl mx-auto pt-32 pb-32 px-4 md:px-8 lg:px-16">
+        <div className="max-w-6xl mx-auto pt-8 sm:pt-16 md:pt-20 pb-16 sm:pb-28 px-4 sm:px-6 md:px-8 lg:px-16">
           <motion.h1
-            className="text-5xl md:text-7xl font-black tracking-tighter mb-8 text-center"
+            className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tight mb-4 sm:mb-6 text-center break-words"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -140,7 +140,7 @@ export default function ContactPage() {
           </motion.h1>
 
           <motion.p
-            className="text-xl text-center text-purple-200 mb-16 max-w-2xl mx-auto"
+            className="text-sm sm:text-base md:text-xl text-center text-purple-200 mb-10 sm:mb-16 max-w-2xl mx-auto px-2"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -148,54 +148,54 @@ export default function ContactPage() {
             Have a project in mind? Let&apos;s discuss how we can bring your vision to life.
           </motion.p>
 
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
             {/* Contact Information */}
             <motion.div
-              className="space-y-8"
+              className="space-y-6 sm:space-y-8"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <div className="mb-12">
-                <div className="w-32 h-32 mx-auto lg:mx-0 mb-6 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center overflow-hidden">
-                  <img src="/profile.png" alt="John Doe" className="w-28 h-28 object-cover rounded-full" />
+              <div className="mb-8 sm:mb-12 text-center lg:text-left">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 mx-auto lg:mx-0 mb-4 sm:mb-6 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center overflow-hidden">
+                  <img src="/profile.png" alt="Abdullahi Siba" className="w-20 h-20 sm:w-28 sm:h-28 object-cover rounded-full" />
                 </div>
-                <h2 className="text-3xl font-black mb-2">Abdullahi M siba</h2>
-                <p className="text-purple-300 text-lg">Creative Developer & Designer</p>
+                <h2 className="text-2xl sm:text-3xl font-black mb-1 sm:mb-2">Abdullahi M siba</h2>
+                <p className="text-purple-300 text-sm sm:text-lg">Creative Developer & Designer</p>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <motion.a
                   href="mailto:sibaabdullahi001@gmail.com"
-                  className="flex items-center gap-4 p-4 bg-black/30 rounded-lg backdrop-blur-sm hover:bg-black/50 transition-colors block"
+                  className="flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 bg-black/40 rounded-xl backdrop-blur-sm hover:bg-black/60 transition-colors border border-gray-800/60 block"
                   whileHover={{ scale: 1.02 }}
                 >
-                  <Mail className="text-purple-400 shrink-0" size={24} />
-                  <div className="overflow-hidden">
-                    <p className="font-semibold">Email</p>
-                    <p className="text-purple-200 text-sm sm:text-base truncate">sibaabdullahi001@gmail.com</p>
+                  <Mail className="text-purple-400 shrink-0" size={20} />
+                  <div className="overflow-hidden min-w-0">
+                    <p className="font-semibold text-xs sm:text-sm text-gray-300">Email</p>
+                    <p className="text-purple-200 text-xs sm:text-base truncate font-mono">sibaabdullahi001@gmail.com</p>
                   </div>
                 </motion.a>
 
                 <motion.div
-                  className="flex items-center gap-4 p-4 bg-black/30 rounded-lg backdrop-blur-sm"
+                  className="flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 bg-black/40 rounded-xl backdrop-blur-sm border border-gray-800/60"
                   whileHover={{ scale: 1.02 }}
                 >
-                  <Phone className="text-purple-400 shrink-0" size={24} />
+                  <Phone className="text-purple-400 shrink-0" size={20} />
                   <div>
-                    <p className="font-semibold">Phone</p>
-                    <p className="text-purple-200">+2347037732220</p>
+                    <p className="font-semibold text-xs sm:text-sm text-gray-300">Phone</p>
+                    <p className="text-purple-200 text-xs sm:text-base font-mono">+2347037732220</p>
                   </div>
                 </motion.div>
 
                 <motion.div
-                  className="flex items-center gap-4 p-4 bg-black/30 rounded-lg backdrop-blur-sm"
+                  className="flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 bg-black/40 rounded-xl backdrop-blur-sm border border-gray-800/60"
                   whileHover={{ scale: 1.02 }}
                 >
-                  <MapPin className="text-purple-400 shrink-0" size={24} />
+                  <MapPin className="text-purple-400 shrink-0" size={20} />
                   <div>
-                    <p className="font-semibold">Location</p>
-                    <p className="text-purple-200">Abuja</p>
+                    <p className="font-semibold text-xs sm:text-sm text-gray-300">Location</p>
+                    <p className="text-purple-200 text-xs sm:text-base">Abuja, Nigeria</p>
                   </div>
                 </motion.div>
               </div>
@@ -240,35 +240,35 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <motion.div
-              className="bg-black/30 backdrop-blur-sm rounded-2xl p-8"
+              className="bg-black/40 backdrop-blur-sm rounded-2xl p-5 sm:p-8 border border-purple-500/20 shadow-xl"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               {isSubmitted ? (
                 <motion.div
-                  className="text-center py-16"
+                  className="text-center py-12 sm:py-16"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-green-500/30">
                     <Send className="text-white" size={24} />
                   </div>
-                  <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
-                  <p className="text-purple-200">Thank you for reaching out. I&apos;ll get back to you soon!</p>
+                  <h3 className="text-xl sm:text-2xl font-bold mb-2">Message Sent!</h3>
+                  <p className="text-purple-200 text-sm sm:text-base max-w-sm mx-auto">Thank you for reaching out. I&apos;ll get back to you soon!</p>
                 </motion.div>
               ) : (
                 <>
                   {errorMessage && (
-                    <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-200 text-sm">
+                    <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-200 text-xs sm:text-sm">
                       {errorMessage}
                     </div>
                   )}
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-semibold mb-2">
+                      <label htmlFor="name" className="block text-xs sm:text-sm font-semibold mb-1.5 sm:mb-2 text-gray-300">
                         Name *
                       </label>
                       <input
@@ -278,12 +278,12 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-black/50 border border-purple-500/30 rounded-lg focus:border-purple-500 focus:outline-none transition-colors text-white placeholder-gray-400"
+                        className="w-full px-4 py-2.5 sm:py-3 bg-black/60 border border-purple-500/30 rounded-xl focus:border-purple-500 focus:outline-none transition-colors text-white placeholder-gray-500 text-sm"
                         placeholder="Your name"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-semibold mb-2">
+                      <label htmlFor="email" className="block text-xs sm:text-sm font-semibold mb-1.5 sm:mb-2 text-gray-300">
                         Email *
                       </label>
                       <input
@@ -293,14 +293,14 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-black/50 border border-purple-500/30 rounded-lg focus:border-purple-500 focus:outline-none transition-colors text-white placeholder-gray-400"
+                        className="w-full px-4 py-2.5 sm:py-3 bg-black/60 border border-purple-500/30 rounded-xl focus:border-purple-500 focus:outline-none transition-colors text-white placeholder-gray-500 text-sm"
                         placeholder="your@email.com"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-semibold mb-2">
+                    <label htmlFor="subject" className="block text-xs sm:text-sm font-semibold mb-1.5 sm:mb-2 text-gray-300">
                       Subject *
                     </label>
                     <input
@@ -310,13 +310,13 @@ export default function ContactPage() {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-black/50 border border-purple-500/30 rounded-lg focus:border-purple-500 focus:outline-none transition-colors text-white placeholder-gray-400"
+                      className="w-full px-4 py-2.5 sm:py-3 bg-black/60 border border-purple-500/30 rounded-xl focus:border-purple-500 focus:outline-none transition-colors text-white placeholder-gray-500 text-sm"
                       placeholder="Project inquiry"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-semibold mb-2">
+                    <label htmlFor="message" className="block text-xs sm:text-sm font-semibold mb-1.5 sm:mb-2 text-gray-300">
                       Message *
                     </label>
                     <textarea
@@ -325,8 +325,8 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      rows={6}
-                      className="w-full px-4 py-3 bg-black/50 border border-purple-500/30 rounded-lg focus:border-purple-500 focus:outline-none transition-colors text-white placeholder-gray-400 resize-none"
+                      rows={5}
+                      className="w-full px-4 py-2.5 sm:py-3 bg-black/60 border border-purple-500/30 rounded-xl focus:border-purple-500 focus:outline-none transition-colors text-white placeholder-gray-500 text-sm resize-none"
                       placeholder="Tell me about your project..."
                     />
                   </div>
@@ -334,8 +334,8 @@ export default function ContactPage() {
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold text-lg rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                    whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                    className="w-full py-3.5 sm:py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold text-base sm:text-lg rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-purple-600/30"
+                    whileHover={{ scale: isSubmitting ? 1 : 1.01 }}
                     whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                   >
                     {isSubmitting ? (
