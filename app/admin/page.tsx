@@ -21,9 +21,6 @@ import {
   Send,
   AlertCircle,
   Database,
-  Camera,
-  Upload,
-  Image as ImageIcon,
 } from 'lucide-react'
 import Link from 'next/link'
 import { ContactMessage, Testimonial } from '@/lib/supabase'
@@ -40,42 +37,7 @@ export default function AdminDashboardPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [isSupabaseConnected, setIsSupabaseConnected] = useState<boolean>(true)
   const [diagnostics, setDiagnostics] = useState<{ detectedUrlKey?: string | null; detectedAnonKey?: string | null } | null>(null)
-  const [activeTab, setActiveTab] = useState<'messages' | 'testimonials' | 'photo'>('messages')
-  const [adminAboutImage, setAdminAboutImage] = useState('/about-profile.jpg')
-  const [isAdminUploading, setIsAdminUploading] = useState(false)
-  const [adminUploadMsg, setAdminUploadMsg] = useState<{ text: string; error?: boolean } | null>(null)
-  const adminFileInputRef = useRef<HTMLInputElement>(null)
-
-  const handleAdminPhotoUpload = async (file: File) => {
-    if (!file) return
-    const preview = URL.createObjectURL(file)
-    setAdminAboutImage(preview)
-    setIsAdminUploading(true)
-    setAdminUploadMsg(null)
-
-    try {
-      const formData = new FormData()
-      formData.append('file', file)
-      const res = await fetch('/api/upload-profile', {
-        method: 'POST',
-        body: formData,
-      })
-      if (res.ok) {
-        const json = await res.json()
-        if (json.url) {
-          setAdminAboutImage(json.url)
-        }
-        setAdminUploadMsg({ text: 'Photo updated and published successfully!' })
-      } else {
-        const json = await res.json()
-        setAdminUploadMsg({ text: json.error || 'Failed to update photo', error: true })
-      }
-    } catch (err: any) {
-      setAdminUploadMsg({ text: err?.message || 'Upload error', error: true })
-    } finally {
-      setIsAdminUploading(false)
-    }
-  }
+  const [activeTab, setActiveTab] = useState<'messages' | 'testimonials'>('messages')
 
   // Search & Filter
   const [searchQuery, setSearchQuery] = useState('')
@@ -464,18 +426,6 @@ export default function AdminDashboardPage() {
             <Star size={16} />
             <span>Testimonials ({testimonials.length})</span>
           </button>
-
-          <button
-            onClick={() => setActiveTab('photo')}
-            className={`flex items-center gap-2 pb-3 px-4 font-bold text-sm border-b-2 transition-colors cursor-pointer ${
-              activeTab === 'photo'
-                ? 'border-purple-500 text-white'
-                : 'border-transparent text-gray-400 hover:text-gray-200'
-            }`}
-          >
-            <ImageIcon size={16} />
-            <span>Profile Photo</span>
-          </button>
         </div>
 
         {/* TAB 1: Messages Inbox */}
@@ -657,106 +607,6 @@ export default function AdminDashboardPage() {
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
-        )}
-
-        {/* TAB 3: Profile & About Photo Manager */}
-        {activeTab === 'photo' && (
-          <div className="max-w-2xl mx-auto bg-zinc-950 border border-purple-500/30 rounded-3xl p-6 sm:p-8 shadow-2xl">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h3 className="text-xl font-bold text-white">Portfolio Photo Manager</h3>
-                <p className="text-gray-400 text-xs mt-1">Upload and manage the primary photo shown on your About section and profile</p>
-              </div>
-              <div className="w-10 h-10 rounded-xl bg-purple-600/20 border border-purple-500/40 text-purple-400 flex items-center justify-center">
-                <Camera size={20} />
-              </div>
-            </div>
-
-            {adminUploadMsg && (
-              <div
-                className={`mb-6 p-3.5 rounded-xl border text-xs flex items-center gap-2 ${
-                  adminUploadMsg.error
-                    ? 'bg-red-500/10 border-red-500/30 text-red-300'
-                    : 'bg-green-500/10 border-green-500/30 text-green-300'
-                }`}
-              >
-                {adminUploadMsg.error ? <AlertCircle size={16} /> : <CheckCircle size={16} />}
-                <span>{adminUploadMsg.text}</span>
-              </div>
-            )}
-
-            <div className="flex flex-col sm:flex-row items-center gap-6">
-              {/* Preview */}
-              <div className="w-44 h-56 rounded-2xl overflow-hidden border-2 border-purple-500/40 bg-black shadow-lg relative shrink-0">
-                <img
-                  src={adminAboutImage}
-                  alt="Profile Preview"
-                  className="w-full h-full object-cover object-top"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-
-              {/* Upload controls */}
-              <div className="flex-1 w-full space-y-4">
-                <div
-                  onDragOver={(e) => e.preventDefault()}
-                  onDrop={(e) => {
-                    e.preventDefault()
-                    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-                      handleAdminPhotoUpload(e.dataTransfer.files[0])
-                    }
-                  }}
-                  onClick={() => adminFileInputRef.current?.click()}
-                  className="border-2 border-dashed border-gray-700 hover:border-purple-400 rounded-2xl p-6 text-center cursor-pointer transition-all hover:bg-purple-950/20 group"
-                >
-                  <Upload size={28} className="text-gray-400 group-hover:text-purple-400 mx-auto mb-2 transition-colors" />
-                  <p className="text-sm font-semibold text-white">Click or drag image file here</p>
-                  <p className="text-xs text-gray-500 mt-1">Select your photo from your device</p>
-                </div>
-
-                <input
-                  ref={adminFileInputRef}
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  onChange={(e) => {
-                    if (e.target.files && e.target.files[0]) {
-                      handleAdminPhotoUpload(e.target.files[0])
-                    }
-                  }}
-                />
-
-                <div className="flex gap-3">
-                  <button
-                    type="button"
-                    onClick={() => adminFileInputRef.current?.click()}
-                    disabled={isAdminUploading}
-                    className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold text-sm shadow-md hover:from-purple-700 hover:to-blue-700 transition-all cursor-pointer disabled:opacity-50"
-                  >
-                    {isAdminUploading ? (
-                      <>
-                        <RefreshCw size={16} className="animate-spin" />
-                        <span>Uploading...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Upload size={16} />
-                        <span>Select File to Upload</span>
-                      </>
-                    )}
-                  </button>
-
-                  <Link
-                    href="/#about"
-                    className="px-4 py-3 rounded-xl bg-gray-900 border border-gray-800 text-gray-300 hover:text-white text-sm font-semibold flex items-center gap-1.5 transition-colors"
-                  >
-                    <span>View About</span>
-                    <ExternalLink size={14} />
-                  </Link>
-                </div>
-              </div>
             </div>
           </div>
         )}

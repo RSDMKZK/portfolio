@@ -22,9 +22,6 @@ import {
   Film,
   Menu,
   X,
-  Camera,
-  Check,
-  Loader2,
 } from "lucide-react"
 import Link from "next/link"
 import { AnimatePresence } from "framer-motion"
@@ -276,50 +273,6 @@ export default function Portfolio() {
   }, []);
 
   const [expTab, setExpTab] = useState(0);
-  const [aboutImage, setAboutImage] = useState('/about-profile.jpg');
-  const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
-  const [photoUploadSuccess, setPhotoUploadSuccess] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement> | React.DragEvent) => {
-    let file: File | null = null;
-    if ('dataTransfer' in e) {
-      e.preventDefault();
-      if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-        file = e.dataTransfer.files[0];
-      }
-    } else if (e.target.files && e.target.files[0]) {
-      file = e.target.files[0];
-    }
-    if (!file) return;
-
-    // Immediate preview
-    const previewUrl = URL.createObjectURL(file);
-    setAboutImage(previewUrl);
-    setIsUploadingPhoto(true);
-    setPhotoUploadSuccess(false);
-
-    try {
-      const formData = new FormData();
-      formData.append('file', file);
-      const res = await fetch('/api/upload-profile', {
-        method: 'POST',
-        body: formData,
-      });
-      if (res.ok) {
-        const json = await res.json();
-        if (json.url) {
-          setAboutImage(json.url);
-        }
-        setPhotoUploadSuccess(true);
-        setTimeout(() => setPhotoUploadSuccess(false), 3500);
-      }
-    } catch (err) {
-      console.error('Failed to upload photo:', err);
-    } finally {
-      setIsUploadingPhoto(false);
-    }
-  };
   const expTabs = [
     {
       title: "EXPERIENCE",
@@ -650,53 +603,15 @@ export default function Portfolio() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              onDragOver={(e) => e.preventDefault()}
-              onDrop={handlePhotoUpload}
             >
               <div className="w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[380px] md:max-w-[400px] h-[360px] sm:h-[480px] md:h-[520px] mx-auto bg-gradient-to-br from-purple-600 to-blue-600 rounded-[2.5rem] flex items-center justify-center p-2 shadow-2xl relative">
                 <div className="w-full h-full bg-black rounded-[2.2rem] flex items-center justify-center overflow-hidden relative">
                   <img
-                    src={aboutImage}
+                    src="/about-profile.jpg"
                     alt="Abdullahi Siba"
                     className="w-full h-full object-cover object-top rounded-[2.2rem] transition-transform duration-500 group-hover:scale-105"
                     referrerPolicy="no-referrer"
                   />
-
-                  {/* Hidden file input */}
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                    onChange={handlePhotoUpload}
-                  />
-
-                  {/* Quick Action Button */}
-                  <div className="absolute bottom-4 right-4 z-20">
-                    <button
-                      type="button"
-                      onClick={() => fileInputRef.current?.click()}
-                      className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-black/80 hover:bg-black/95 backdrop-blur-md text-white border border-white/20 shadow-xl text-xs font-semibold hover:border-purple-400 transition-all hover:scale-105 active:scale-95"
-                      title="Upload or Change Photo"
-                    >
-                      {isUploadingPhoto ? (
-                        <>
-                          <Loader2 className="w-3.5 h-3.5 animate-spin text-purple-400" />
-                          <span>Saving...</span>
-                        </>
-                      ) : photoUploadSuccess ? (
-                        <>
-                          <Check className="w-3.5 h-3.5 text-green-400" />
-                          <span className="text-green-300">Photo Saved!</span>
-                        </>
-                      ) : (
-                        <>
-                          <Camera className="w-3.5 h-3.5 text-purple-400" />
-                          <span>Use My Image</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
                 </div>
               </div>
             </motion.div>
