@@ -607,9 +607,9 @@ export default function Portfolio() {
               <div className="w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[380px] md:max-w-[400px] h-[360px] sm:h-[480px] md:h-[520px] mx-auto bg-gradient-to-br from-purple-600 to-blue-600 rounded-[2.5rem] flex items-center justify-center p-2 shadow-2xl relative">
                 <div className="w-full h-full bg-black rounded-[2.2rem] flex items-center justify-center overflow-hidden relative">
                   <img
-                    src="/about-profile.jpg"
+                    src="/profile.png"
                     alt="Abdullahi Siba"
-                    className="w-full h-full object-cover object-top rounded-[2.2rem] transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover rounded-[2.2rem] transition-transform duration-500 group-hover:scale-105"
                     referrerPolicy="no-referrer"
                   />
                 </div>
