@@ -289,7 +289,7 @@ export default function TestimonialsSection() {
                         required
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="e.g. Alex Johnson"
+                        placeholder="Full name"
                         className="w-full px-4 py-2.5 bg-black border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
                       />
                     </div>
@@ -323,7 +323,7 @@ export default function TestimonialsSection() {
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="e.g. alex@company.com or personal email"
+                        placeholder="Email address"
                         className="w-full px-4 py-2.5 bg-black border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
                       />
                       <p className="text-[11px] text-gray-500 mt-1">
