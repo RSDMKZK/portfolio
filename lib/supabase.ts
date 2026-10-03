@@ -4,6 +4,7 @@ export interface Testimonial {
   id?: string
   name: string
   role: string
+  email?: string
   text: string
   rating: number
   approved?: boolean

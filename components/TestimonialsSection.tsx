@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Star, Plus, X, CheckCircle, MessageSquareQuote, Loader2, Sparkles } from 'lucide-react'
+import { Star, Plus, X, CheckCircle, MessageSquareQuote, Loader2, Sparkles, Mail, ShieldCheck } from 'lucide-react'
 import { Testimonial } from '@/lib/supabase'
 import { DEFAULT_TESTIMONIALS } from '@/lib/defaultTestimonials'
 
@@ -15,6 +15,7 @@ export default function TestimonialsSection() {
   // Form State
   const [name, setName] = useState('')
   const [role, setRole] = useState('')
+  const [email, setEmail] = useState('')
   const [rating, setRating] = useState(5)
   const [hoverRating, setHoverRating] = useState<number | null>(null)
   const [text, setText] = useState('')
@@ -54,6 +55,11 @@ export default function TestimonialsSection() {
       return
     }
 
+    if (!email.trim() || !email.includes('@')) {
+      setErrorMessage('Please provide a valid email address for professional verification.')
+      return
+    }
+
     try {
       setSubmitting(true)
       setErrorMessage(null)
@@ -64,6 +70,7 @@ export default function TestimonialsSection() {
         body: JSON.stringify({
           name: name.trim(),
           role: role.trim() || 'Client',
+          email: email.trim(),
           rating,
           text: text.trim(),
         }),
@@ -88,6 +95,7 @@ export default function TestimonialsSection() {
         setSuccess(false)
         setName('')
         setRole('')
+        setEmail('')
         setText('')
         setRating(5)
       }, 1800)
@@ -135,10 +143,27 @@ export default function TestimonialsSection() {
           </motion.button>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
+        {/* Testimonials Grid or Empty State */}
+        {testimonials.length === 0 ? (
+          <div className="text-center py-14 sm:py-16 px-6 border border-dashed border-gray-800 rounded-3xl max-w-lg mx-auto bg-zinc-950/70">
+            <MessageSquareQuote size={42} className="mx-auto text-blue-400/60 mb-3" />
+            <h4 className="text-lg font-bold text-white mb-1.5">No Reviews Yet</h4>
+            <p className="text-gray-400 text-xs sm:text-sm mb-6 leading-relaxed">
+              Have we worked together? Share your feedback, collaboration experience, and project outcomes.
+            </p>
+            <button
+              type="button"
+              onClick={() => setIsModalOpen(true)}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white text-xs font-bold transition-all shadow-lg shadow-blue-600/25 cursor-pointer"
+            >
+              <Plus size={16} />
+              <span>Leave a Review</span>
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
               key={testimonial.id || `${testimonial.name}-${index}`}
               className="bg-black/90 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-gray-800 hover:border-blue-500/80 transition-all duration-300 hover-lift flex flex-col justify-between shadow-xl"
               initial={{ opacity: 0, y: 50 }}
@@ -168,9 +193,17 @@ export default function TestimonialsSection() {
 
               <div className="border-t border-gray-800/80 pt-4 flex items-center justify-between">
                 <div>
-                  <h4 className="font-bold text-white text-base tracking-wide uppercase">
-                    {testimonial.name}
-                  </h4>
+                  <div className="flex items-center gap-2">
+                    <h4 className="font-bold text-white text-base tracking-wide uppercase">
+                      {testimonial.name}
+                    </h4>
+                    {testimonial.email && (
+                      <span className="inline-flex items-center gap-1 text-[10px] text-blue-400 font-mono bg-blue-500/10 px-2 py-0.5 rounded-full border border-blue-500/20">
+                        <CheckCircle size={10} className="text-blue-400" />
+                        <span>Verified</span>
+                      </span>
+                    )}
+                  </div>
                   <p className="text-gray-400 text-xs font-mono tracking-wider mt-0.5">
                     {testimonial.role}
                   </p>
@@ -184,6 +217,7 @@ export default function TestimonialsSection() {
             </motion.div>
           ))}
         </div>
+      )}
       </div>
 
       {/* Review Modal */}
@@ -271,6 +305,30 @@ export default function TestimonialsSection() {
                         placeholder="e.g. Founder, InnovateX / Client"
                         className="w-full px-4 py-2.5 bg-black border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
                       />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5 flex items-center justify-between">
+                        <span className="flex items-center gap-1.5">
+                          <Mail size={13} className="text-blue-400" />
+                          <span>Email Address *</span>
+                        </span>
+                        <span className="text-[10px] text-gray-400 normal-case font-normal flex items-center gap-1">
+                          <ShieldCheck size={11} className="text-emerald-400" />
+                          <span>Professional verification</span>
+                        </span>
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="e.g. alex@company.com or personal email"
+                        className="w-full px-4 py-2.5 bg-black border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                      />
+                      <p className="text-[11px] text-gray-500 mt-1">
+                        Keeps reviews authentic. Your email is kept secure and will not be displayed publicly without consent.
+                      </p>
                     </div>
 
                     <div>

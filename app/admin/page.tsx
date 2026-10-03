@@ -46,6 +46,8 @@ export default function AdminDashboardPage() {
   // Selected message for details modal
   const [selectedMessage, setSelectedMessage] = useState<ContactMessage | null>(null)
   const [actionLoadingId, setActionLoadingId] = useState<string | null>(null)
+  const [deletingTestimonialId, setDeletingTestimonialId] = useState<string | null>(null)
+  const [isClearingAllTestimonials, setIsClearingAllTestimonials] = useState(false)
 
   // On mount, check existing session
   useEffect(() => {
@@ -187,6 +189,56 @@ export default function AdminDashboardPage() {
     }
   }
 
+  const deleteTestimonial = async (id?: string, name?: string) => {
+    if (!id) return
+    if (!confirm(`Are you sure you want to permanently delete the review from "${name || 'this client'}"? It will be removed from both the database and website.`)) {
+      return
+    }
+
+    setDeletingTestimonialId(id)
+    try {
+      const res = await fetch(`/api/testimonials?id=${encodeURIComponent(id)}`, {
+        method: 'DELETE',
+      })
+      if (res.ok) {
+        setTestimonials((prev) => prev.filter((t) => t.id !== id))
+      } else {
+        const json = await res.json()
+        alert(json.error || 'Failed to delete review')
+      }
+    } catch (err) {
+      console.error('Failed to delete review:', err)
+      alert('Error occurred while deleting review.')
+    } finally {
+      setDeletingTestimonialId(null)
+    }
+  }
+
+  const clearAllTestimonials = async () => {
+    if (testimonials.length === 0) return
+    if (!confirm('Are you sure you want to permanently delete ALL reviews from the database? This cannot be undone.')) {
+      return
+    }
+
+    setIsClearingAllTestimonials(true)
+    try {
+      const res = await fetch('/api/testimonials?all=true', {
+        method: 'DELETE',
+      })
+      if (res.ok) {
+        setTestimonials([])
+      } else {
+        const json = await res.json()
+        alert(json.error || 'Failed to clear all reviews')
+      }
+    } catch (err) {
+      console.error('Failed to clear reviews:', err)
+      alert('Error occurred while clearing all reviews.')
+    } finally {
+      setIsClearingAllTestimonials(false)
+    }
+  }
+
   // Filtered messages
   const filteredMessages = useMemo(() => {
     return messages.filter((m) => {
@@ -245,13 +297,10 @@ export default function AdminDashboardPage() {
                 required
                 value={passkey}
                 onChange={(e) => setPasskey(e.target.value)}
-                placeholder="Enter passkey (default: siba2025)"
+                placeholder="Enter admin passkey"
                 className="w-full px-4 py-3 bg-black border border-gray-800 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 transition-colors text-sm"
                 autoFocus
               />
-              <p className="text-[11px] text-gray-500 mt-2">
-                Default key is <code className="text-blue-400 bg-blue-950/40 px-1 py-0.5 rounded">siba2025</code> (or configure via <code className="text-gray-400">ADMIN_SECRET_KEY</code>)
-              </p>
             </div>
 
             <button
@@ -572,42 +621,90 @@ export default function AdminDashboardPage() {
         {/* TAB 2: Testimonials List */}
         {activeTab === 'testimonials' && (
           <div className="space-y-4">
-            <div className="p-4 rounded-xl bg-zinc-950 border border-gray-800 text-xs text-gray-400 flex items-center justify-between">
-              <span>All testimonials currently saved in Supabase:</span>
-              <Link href="/#testimonials" className="text-blue-400 hover:underline flex items-center gap-1">
-                <span>View on portfolio</span>
-                <ExternalLink size={12} />
-              </Link>
+            <div className="p-4 rounded-xl bg-zinc-950 border border-gray-800 text-xs text-gray-400 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <span>Reviews currently saved in Supabase ({testimonials.length}):</span>
+              </div>
+              <div className="flex items-center gap-3">
+                {testimonials.length > 0 && (
+                  <button
+                    onClick={clearAllTestimonials}
+                    disabled={isClearingAllTestimonials}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-950/40 hover:bg-red-900/60 text-red-400 border border-red-800/50 text-xs font-semibold transition-colors cursor-pointer disabled:opacity-50"
+                  >
+                    <Trash2 size={13} />
+                    <span>{isClearingAllTestimonials ? 'Clearing...' : 'Delete All Reviews'}</span>
+                  </button>
+                )}
+                <Link href="/#testimonials" className="text-blue-400 hover:underline flex items-center gap-1">
+                  <span>View on portfolio</span>
+                  <ExternalLink size={12} />
+                </Link>
+              </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4">
-              {testimonials.map((t, idx) => (
-                <div key={t.id || idx} className="p-6 rounded-2xl bg-zinc-950 border border-gray-800 shadow-md flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex gap-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            size={16}
-                            className={i < t.rating ? 'text-yellow-400 fill-current' : 'text-gray-700'}
-                          />
-                        ))}
+            {testimonials.length === 0 ? (
+              <div className="text-center py-16 border border-dashed border-gray-800 rounded-2xl bg-zinc-950/50">
+                <Star size={36} className="mx-auto text-gray-600 mb-2" />
+                <h4 className="text-base font-bold text-white mb-1">No Reviews in Database</h4>
+                <p className="text-gray-400 text-xs">All existing reviews have been removed. New client reviews submitted on the portfolio will appear here.</p>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 gap-4">
+                {testimonials.map((t, idx) => (
+                  <div key={t.id || idx} className="p-6 rounded-2xl bg-zinc-950 border border-gray-800 shadow-md flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex gap-1">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              size={16}
+                              className={i < t.rating ? 'text-yellow-400 fill-current' : 'text-gray-700'}
+                            />
+                          ))}
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] text-emerald-400 bg-emerald-950/40 px-2 py-0.5 rounded-full border border-emerald-800/40 font-semibold">
+                            Published
+                          </span>
+                          <button
+                            onClick={() => deleteTestimonial(t.id, t.name)}
+                            disabled={deletingTestimonialId === t.id}
+                            className="p-1.5 rounded-lg bg-red-950/30 border border-red-800/40 text-red-400 hover:text-red-300 hover:bg-red-900/50 transition-colors cursor-pointer disabled:opacity-50"
+                            title="Delete this review permanently"
+                          >
+                            {deletingTestimonialId === t.id ? (
+                              <div className="w-3.5 h-3.5 border-2 border-red-400 border-t-transparent rounded-full animate-spin" />
+                            ) : (
+                              <Trash2 size={13} />
+                            )}
+                          </button>
+                        </div>
                       </div>
-                      <span className="text-[10px] text-emerald-400 bg-emerald-950/40 px-2 py-0.5 rounded-full border border-emerald-800/40 font-semibold">
-                        Published
-                      </span>
+                      <p className="text-gray-300 text-sm italic mb-4 leading-relaxed">&ldquo;{t.text}&rdquo;</p>
                     </div>
-                    <p className="text-gray-300 text-sm italic mb-4 leading-relaxed">&ldquo;{t.text}&rdquo;</p>
-                  </div>
 
-                  <div className="border-t border-gray-900 pt-3">
-                    <h5 className="font-bold text-white text-sm uppercase">{t.name}</h5>
-                    <p className="text-gray-400 text-xs">{t.role}</p>
+                    <div className="border-t border-gray-900 pt-3">
+                      <h5 className="font-bold text-white text-sm uppercase">{t.name}</h5>
+                      <div className="flex items-center justify-between text-gray-400 text-xs mt-1">
+                        <span>{t.role}</span>
+                        {t.email && (
+                          <a
+                            href={`mailto:${t.email}`}
+                            className="text-blue-400 hover:text-blue-300 flex items-center gap-1 font-mono text-[11px] hover:underline"
+                            title={`Email ${t.name}: ${t.email}`}
+                          >
+                            <Mail size={12} />
+                            <span>{t.email}</span>
+                          </a>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </main>
