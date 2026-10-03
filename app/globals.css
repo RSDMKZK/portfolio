@@ -57,7 +57,7 @@ h6 {
 
 /* Logo gradient color suggestion */
 .logo-gradient {
-  background: linear-gradient(90deg, #7c3aed 0%, #a259f7 100%);
+  background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -66,7 +66,7 @@ h6 {
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -197,10 +197,10 @@ h6 {
 
 .midnight-glow {
   text-shadow:
-    0 0 8px #a259f7,
-    0 0 16px #a259f7,
-    0 0 32px #a259f7,
-    0 0 64px #a259f7;
+    0 0 8px #3b82f6,
+    0 0 16px #3b82f6,
+    0 0 32px #2563eb,
+    0 0 64px #1d4ed8;
   color: #fff;
 }
 
@@ -248,22 +248,22 @@ h6 {
 /* Traveling shadow animation for hero name */
 @keyframes traveling-shadow {
   0% {
-    text-shadow: 0 0 0 #a259f7, 0 0 0 #fff;
+    text-shadow: 0 0 0 #3b82f6, 0 0 0 #fff;
   }
   20% {
-    text-shadow: 4px 0 16px #a259f7, 0 0 0 #fff;
+    text-shadow: 4px 0 16px #3b82f6, 0 0 0 #fff;
   }
   40% {
-    text-shadow: 0 4px 24px #fff, 0 0 0 #a259f7;
+    text-shadow: 0 4px 24px #fff, 0 0 0 #3b82f6;
   }
   60% {
-    text-shadow: -4px 0 16px #a259f7, 0 0 0 #fff;
+    text-shadow: -4px 0 16px #3b82f6, 0 0 0 #fff;
   }
   80% {
-    text-shadow: 0 -4px 24px #fff, 0 0 0 #a259f7;
+    text-shadow: 0 -4px 24px #fff, 0 0 0 #3b82f6;
   }
   100% {
-    text-shadow: 0 0 0 #a259f7, 0 0 0 #fff;
+    text-shadow: 0 0 0 #3b82f6, 0 0 0 #fff;
   }
 }
 
@@ -282,7 +282,7 @@ h6 {
 }
 
 .shiny-text {
-  background: linear-gradient(110deg, #fff 10%, #a259f7 40%, #fff 60%);
+  background: linear-gradient(110deg, #fff 10%, #38bdf8 40%, #fff 60%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

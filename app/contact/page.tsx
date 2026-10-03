@@ -90,7 +90,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white">
       {/* Animated Background Dots */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         {BACKGROUND_DOTS.map((dot, i) => (
@@ -120,7 +120,7 @@ export default function ContactPage() {
         <header className="p-8">
           <Link href="/">
             <motion.div
-              className="flex items-center gap-2 text-white hover:text-purple-300 transition-colors cursor-pointer inline-flex"
+              className="flex items-center gap-2 text-white hover:text-blue-300 transition-colors cursor-pointer inline-flex"
               whileHover={{ x: -5 }}
             >
               <ArrowLeft size={24} />
@@ -140,7 +140,7 @@ export default function ContactPage() {
           </motion.h1>
 
           <motion.p
-            className="text-sm sm:text-base md:text-xl text-center text-purple-200 mb-10 sm:mb-16 max-w-2xl mx-auto px-2"
+            className="text-sm sm:text-base md:text-xl text-center text-blue-200 mb-10 sm:mb-16 max-w-2xl mx-auto px-2"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -157,11 +157,11 @@ export default function ContactPage() {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <div className="mb-8 sm:mb-12 text-center lg:text-left">
-                <div className="w-24 h-24 sm:w-32 sm:h-32 mx-auto lg:mx-0 mb-4 sm:mb-6 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 mx-auto lg:mx-0 mb-4 sm:mb-6 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-full flex items-center justify-center overflow-hidden">
                   <img src="/profile.png" alt="Abdullahi Siba" className="w-20 h-20 sm:w-28 sm:h-28 object-cover rounded-full" />
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-black mb-1 sm:mb-2">Abdullahi M siba</h2>
-                <p className="text-purple-300 text-sm sm:text-lg">Creative Developer & Designer</p>
+                <p className="text-blue-300 text-sm sm:text-lg">Creative Developer & Designer</p>
               </div>
 
               <div className="space-y-4 sm:space-y-6">
@@ -170,10 +170,10 @@ export default function ContactPage() {
                   className="flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 bg-black/40 rounded-xl backdrop-blur-sm hover:bg-black/60 transition-colors border border-gray-800/60 block"
                   whileHover={{ scale: 1.02 }}
                 >
-                  <Mail className="text-purple-400 shrink-0" size={20} />
+                  <Mail className="text-blue-400 shrink-0" size={20} />
                   <div className="overflow-hidden min-w-0">
                     <p className="font-semibold text-xs sm:text-sm text-gray-300">Email</p>
-                    <p className="text-purple-200 text-xs sm:text-base truncate font-mono">sibaabdullahi001@gmail.com</p>
+                    <p className="text-blue-200 text-xs sm:text-base truncate font-mono">sibaabdullahi001@gmail.com</p>
                   </div>
                 </motion.a>
 
@@ -181,10 +181,10 @@ export default function ContactPage() {
                   className="flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 bg-black/40 rounded-xl backdrop-blur-sm border border-gray-800/60"
                   whileHover={{ scale: 1.02 }}
                 >
-                  <Phone className="text-purple-400 shrink-0" size={20} />
+                  <Phone className="text-blue-400 shrink-0" size={20} />
                   <div>
                     <p className="font-semibold text-xs sm:text-sm text-gray-300">Phone</p>
-                    <p className="text-purple-200 text-xs sm:text-base font-mono">+2347037732220</p>
+                    <p className="text-blue-200 text-xs sm:text-base font-mono">+2347037732220</p>
                   </div>
                 </motion.div>
 
@@ -192,10 +192,10 @@ export default function ContactPage() {
                   className="flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 bg-black/40 rounded-xl backdrop-blur-sm border border-gray-800/60"
                   whileHover={{ scale: 1.02 }}
                 >
-                  <MapPin className="text-purple-400 shrink-0" size={20} />
+                  <MapPin className="text-blue-400 shrink-0" size={20} />
                   <div>
                     <p className="font-semibold text-xs sm:text-sm text-gray-300">Location</p>
-                    <p className="text-purple-200 text-xs sm:text-base">Abuja, Nigeria</p>
+                    <p className="text-blue-200 text-xs sm:text-base">Abuja, Nigeria</p>
                   </div>
                 </motion.div>
               </div>
@@ -207,7 +207,7 @@ export default function ContactPage() {
                     href="https://github.com/RSDMKZK"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 bg-black/30 rounded-lg backdrop-blur-sm hover:bg-purple-600 transition-colors"
+                    className="p-3 bg-black/30 rounded-lg backdrop-blur-sm hover:bg-blue-600 transition-colors"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     title="GitHub Profile"
@@ -240,7 +240,7 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <motion.div
-              className="bg-black/40 backdrop-blur-sm rounded-2xl p-5 sm:p-8 border border-purple-500/20 shadow-xl"
+              className="bg-black/40 backdrop-blur-sm rounded-2xl p-5 sm:p-8 border border-blue-500/20 shadow-xl"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -256,7 +256,7 @@ export default function ContactPage() {
                     <Send className="text-white" size={24} />
                   </div>
                   <h3 className="text-xl sm:text-2xl font-bold mb-2">Message Sent!</h3>
-                  <p className="text-purple-200 text-sm sm:text-base max-w-sm mx-auto">Thank you for reaching out. I&apos;ll get back to you soon!</p>
+                  <p className="text-blue-200 text-sm sm:text-base max-w-sm mx-auto">Thank you for reaching out. I&apos;ll get back to you soon!</p>
                 </motion.div>
               ) : (
                 <>
@@ -278,7 +278,7 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-2.5 sm:py-3 bg-black/60 border border-purple-500/30 rounded-xl focus:border-purple-500 focus:outline-none transition-colors text-white placeholder-gray-500 text-sm"
+                        className="w-full px-4 py-2.5 sm:py-3 bg-black/60 border border-blue-500/30 rounded-xl focus:border-blue-500 focus:outline-none transition-colors text-white placeholder-gray-500 text-sm"
                         placeholder="Your name"
                       />
                     </div>
@@ -293,7 +293,7 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-2.5 sm:py-3 bg-black/60 border border-purple-500/30 rounded-xl focus:border-purple-500 focus:outline-none transition-colors text-white placeholder-gray-500 text-sm"
+                        className="w-full px-4 py-2.5 sm:py-3 bg-black/60 border border-blue-500/30 rounded-xl focus:border-blue-500 focus:outline-none transition-colors text-white placeholder-gray-500 text-sm"
                         placeholder="your@email.com"
                       />
                     </div>
@@ -310,7 +310,7 @@ export default function ContactPage() {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2.5 sm:py-3 bg-black/60 border border-purple-500/30 rounded-xl focus:border-purple-500 focus:outline-none transition-colors text-white placeholder-gray-500 text-sm"
+                      className="w-full px-4 py-2.5 sm:py-3 bg-black/60 border border-blue-500/30 rounded-xl focus:border-blue-500 focus:outline-none transition-colors text-white placeholder-gray-500 text-sm"
                       placeholder="Project inquiry"
                     />
                   </div>
@@ -326,7 +326,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-2.5 sm:py-3 bg-black/60 border border-purple-500/30 rounded-xl focus:border-purple-500 focus:outline-none transition-colors text-white placeholder-gray-500 text-sm resize-none"
+                      className="w-full px-4 py-2.5 sm:py-3 bg-black/60 border border-blue-500/30 rounded-xl focus:border-blue-500 focus:outline-none transition-colors text-white placeholder-gray-500 text-sm resize-none"
                       placeholder="Tell me about your project..."
                     />
                   </div>
@@ -334,7 +334,7 @@ export default function ContactPage() {
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 sm:py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold text-base sm:text-lg rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-purple-600/30"
+                    className="w-full py-3.5 sm:py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold text-base sm:text-lg rounded-xl hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-blue-600/30"
                     whileHover={{ scale: isSubmitting ? 1 : 1.01 }}
                     whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                   >

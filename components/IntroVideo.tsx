@@ -107,8 +107,8 @@ export default function IntroVideo({ onComplete, videoSrc }: IntroVideoProps) {
       {/* Header Bar inside Intro */}
       <div className="relative z-10 flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6 md:px-12">
         <div className="flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/20">
-          <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400 animate-pulse" />
-          <span className="text-[10px] sm:text-xs md:text-sm font-semibold tracking-widest text-purple-200 uppercase">
+          <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400 animate-pulse" />
+          <span className="text-[10px] sm:text-xs md:text-sm font-semibold tracking-widest text-blue-200 uppercase">
             Experience Intro
           </span>
         </div>
@@ -120,7 +120,7 @@ export default function IntroVideo({ onComplete, videoSrc }: IntroVideoProps) {
         >
           <span className="relative z-10 tracking-wider text-xs sm:text-sm font-semibold">SKIP INTRO</span>
           <SkipForward className="relative z-10 w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </button>
       </div>
 
@@ -130,9 +130,9 @@ export default function IntroVideo({ onComplete, videoSrc }: IntroVideoProps) {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className="inline-flex items-center gap-2 mb-4 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-purple-500/20 border border-purple-400/40 backdrop-blur-md text-purple-300 text-xs md:text-sm font-medium tracking-widest uppercase"
+          className="inline-flex items-center gap-2 mb-4 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-blue-500/20 border border-blue-400/40 backdrop-blur-md text-blue-300 text-xs md:text-sm font-medium tracking-widest uppercase"
         >
-          <Film className="w-4 h-4 text-purple-300" />
+          <Film className="w-4 h-4 text-blue-300" />
           Interactive Portfolio Showcase
         </motion.div>
 
@@ -140,7 +140,7 @@ export default function IntroVideo({ onComplete, videoSrc }: IntroVideoProps) {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-purple-400 mb-4 drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]"
+          className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-blue-400 mb-4 drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]"
         >
           ABDULLAHI SIBA
         </motion.h1>
@@ -160,7 +160,7 @@ export default function IntroVideo({ onComplete, videoSrc }: IntroVideoProps) {
         {/* Animated Video Progress Bar */}
         <div className="w-full bg-white/20 h-1.5 rounded-full overflow-hidden backdrop-blur-md relative cursor-pointer">
           <motion.div
-            className="h-full bg-gradient-to-r from-purple-500 via-blue-500 to-indigo-400 rounded-full"
+            className="h-full bg-gradient-to-r from-blue-600 via-cyan-500 to-sky-400 rounded-full"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -197,7 +197,7 @@ export default function IntroVideo({ onComplete, videoSrc }: IntroVideoProps) {
 
           <button
             onClick={onComplete}
-            className="text-purple-300 hover:text-white font-medium underline underline-offset-4 transition-colors text-xs sm:text-sm cursor-pointer"
+            className="text-blue-300 hover:text-white font-medium underline underline-offset-4 transition-colors text-xs sm:text-sm cursor-pointer"
           >
             Enter Main Site &rarr;
           </button>

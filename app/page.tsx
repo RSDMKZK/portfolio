@@ -22,12 +22,14 @@ import {
   Film,
   Menu,
   X,
+  Sparkles,
 } from "lucide-react"
 import Link from "next/link"
 import { AnimatePresence } from "framer-motion"
 import IntroVideo from "../components/IntroVideo"
 import BackgroundVideo from "../components/BackgroundVideo"
 import TestimonialsSection from "../components/TestimonialsSection"
+import { productsData, ProductCaseStudy } from "@/lib/products"
 // import SplashCursor from "../components/SplashCursor";
 
 // Register GSAP plugins
@@ -328,15 +330,15 @@ export default function Portfolio() {
           <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={() => setShowIntro(true)}
-              className="flex items-center gap-1 text-purple-300 hover:text-white font-semibold text-xs px-2.5 py-1 rounded-full border border-purple-500/30 bg-purple-500/10"
+              className="flex items-center gap-1 text-blue-300 hover:text-white font-semibold text-xs px-2.5 py-1 rounded-full border border-blue-500/30 bg-blue-500/10"
               title="Replay Video Intro"
             >
-              <Film className="w-3.5 h-3.5 text-purple-400" />
+              <Film className="w-3.5 h-3.5 text-blue-400" />
               <span>Intro</span>
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-white hover:text-purple-300 focus:outline-none"
+              className="p-2 text-white hover:text-blue-300 focus:outline-none"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -348,17 +350,20 @@ export default function Portfolio() {
         <nav className="hidden md:flex items-center gap-4 lg:gap-6">
           <button
             onClick={() => setShowIntro(true)}
-            className="flex items-center gap-1.5 text-purple-300 hover:text-white font-semibold text-sm transition-all px-3 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 hover:bg-purple-500/20 active:scale-95"
+            className="flex items-center gap-1.5 text-blue-300 hover:text-white font-semibold text-sm transition-all px-3 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 hover:bg-blue-500/20 active:scale-95"
             title="Replay Video Intro"
           >
-            <Film className="w-4 h-4 text-purple-400" />
+            <Film className="w-4 h-4 text-blue-400" />
             <span>Intro</span>
           </button>
-          <a href="#about" className="text-white/80 font-semibold hover:text-white transition-colors px-3 py-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">About</a>
-          <a href="#skills" className="text-white/80 font-semibold hover:text-white transition-colors px-3 py-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">Skills</a>
-          <a href="#projects" className="text-white/80 font-semibold hover:text-white transition-colors px-3 py-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">Projects</a>
-          <a href="#testimonials" className="text-white/80 font-semibold hover:text-white transition-colors px-3 py-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">Testimonials</a>
-          <a href="#contact" className="text-white/80 font-semibold hover:text-white transition-colors px-3 py-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">Contact</a>
+          <Link href="/work" className="text-blue-300 font-bold hover:text-white transition-colors px-3 py-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 flex items-center gap-1">
+            <span>Work & Case Studies</span>
+          </Link>
+          <a href="#about" className="text-white/80 font-semibold hover:text-white transition-colors px-3 py-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">About</a>
+          <a href="#skills" className="text-white/80 font-semibold hover:text-white transition-colors px-3 py-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">Skills</a>
+          <a href="#projects" className="text-white/80 font-semibold hover:text-white transition-colors px-3 py-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">Selected Work</a>
+          <a href="#testimonials" className="text-white/80 font-semibold hover:text-white transition-colors px-3 py-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">Testimonials</a>
+          <a href="#contact" className="text-white/80 font-semibold hover:text-white transition-colors px-3 py-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">Contact</a>
         </nav>
 
         {/* Mobile Navigation Dropdown */}
@@ -371,38 +376,45 @@ export default function Portfolio() {
               transition={{ duration: 0.3 }}
               className="w-full md:hidden flex flex-col items-center gap-3 pt-4 pb-2 border-t border-white/10 mt-3"
             >
+              <Link
+                href="/work"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-blue-300 font-bold text-base py-1 hover:text-white transition-colors"
+              >
+                Work & Products (All 10 Case Studies)
+              </Link>
               <a
                 href="#about"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-white/90 font-semibold text-base py-1 hover:text-purple-300 transition-colors"
+                className="text-white/90 font-semibold text-base py-1 hover:text-blue-300 transition-colors"
               >
                 About
               </a>
               <a
                 href="#skills"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-white/90 font-semibold text-base py-1 hover:text-purple-300 transition-colors"
+                className="text-white/90 font-semibold text-base py-1 hover:text-blue-300 transition-colors"
               >
                 Skills
               </a>
               <a
                 href="#projects"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-white/90 font-semibold text-base py-1 hover:text-purple-300 transition-colors"
+                className="text-white/90 font-semibold text-base py-1 hover:text-blue-300 transition-colors"
               >
                 Projects
               </a>
               <a
                 href="#testimonials"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-white/90 font-semibold text-base py-1 hover:text-purple-300 transition-colors"
+                className="text-white/90 font-semibold text-base py-1 hover:text-blue-300 transition-colors"
               >
                 Testimonials
               </a>
               <a
                 href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-white/90 font-semibold text-base py-1 hover:text-purple-300 transition-colors"
+                className="text-white/90 font-semibold text-base py-1 hover:text-blue-300 transition-colors"
               >
                 Contact
               </a>
@@ -424,8 +436,8 @@ export default function Portfolio() {
         {/* Animated colorful blobs and floating dots in hero background */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           {/* Blurred colorful blobs (reduced for performance) */}
-          <div className="absolute top-1/4 left-1/5 w-60 h-60 bg-gradient-to-br from-purple-500 via-blue-500 to-pink-400 opacity-20 rounded-full blur-xl animate-blob1" style={{ willChange: 'transform' }} />
-          <div className="absolute top-2/3 right-1/4 w-44 h-44 bg-gradient-to-br from-blue-400 via-purple-400 to-pink-500 opacity-15 rounded-full blur-xl animate-blob2" style={{ willChange: 'transform' }} />
+          <div className="absolute top-1/4 left-1/5 w-60 h-60 bg-gradient-to-br from-blue-600 via-cyan-500 to-blue-400 opacity-20 rounded-full blur-xl animate-blob1" style={{ willChange: 'transform' }} />
+          <div className="absolute top-2/3 right-1/4 w-44 h-44 bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-500 opacity-15 rounded-full blur-xl animate-blob2" style={{ willChange: 'transform' }} />
           {/* Fewer floating dots */}
           {[
             { width: '14px', height: '14px', top: '25%', left: '20%', animationDelay: '0.4s' },
@@ -461,8 +473,8 @@ export default function Portfolio() {
           </motion.div>
         </div>
         <motion.div className="parallax-bg absolute inset-0 z-0" style={{ y: backgroundY }}>
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/30 to-black"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(120,119,198,0.15),transparent_50%)]"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-950/40 to-black"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(59,130,246,0.15),transparent_50%)]"></div>
         </motion.div>
 
         <motion.div className="relative z-10 text-center px-4 max-w-5xl mx-auto" style={{ y: textY }}>
@@ -477,7 +489,7 @@ export default function Portfolio() {
             <span className="shiny-text">SIBA</span>
           </motion.h1>
           <p className="hero-subtitle text-lg sm:text-xl md:text-2xl font-bold tracking-wide text-gray-300 mb-8 max-w-2xl mx-auto">
-            Agentic AI & Full Stack Developer & Prompt Engineer
+            Agentic AI & Full Stack Developer
           </p>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
             <motion.a
@@ -501,9 +513,9 @@ export default function Portfolio() {
         </motion.div>
 
         {/* Floating Elements */}
-        <div className="floating-element absolute top-20 left-20 w-4 h-4 bg-purple-500 rounded-full"></div>
-        <div className="floating-element absolute top-40 right-32 w-6 h-6 bg-blue-500 rounded-full"></div>
-        <div className="floating-element absolute bottom-32 left-1/4 w-3 h-3 bg-pink-500 rounded-full"></div>
+        <div className="floating-element absolute top-20 left-20 w-4 h-4 bg-blue-500 rounded-full"></div>
+        <div className="floating-element absolute top-40 right-32 w-6 h-6 bg-cyan-500 rounded-full"></div>
+        <div className="floating-element absolute bottom-32 left-1/4 w-3 h-3 bg-sky-400 rounded-full"></div>
 
         {/* Floating Motivational Quote (Desktop view to keep mobile clean) */}
         <motion.div
@@ -514,9 +526,9 @@ export default function Portfolio() {
           transition={{ duration: 0.8 }}
           className="hidden lg:flex absolute bottom-8 left-8 z-20 max-w-sm rounded-2xl px-5 py-3 shadow-lg items-center gap-2 bg-black/50 backdrop-blur-md border border-white/10"
         >
-          <span className="text-2xl text-purple-400 font-bold italic">&ldquo;</span>
+          <span className="text-2xl text-blue-400 font-bold italic">&ldquo;</span>
           <span className="text-sm text-white/90 font-medium text-left">{motivationalQuotes[quoteIndex]}</span>
-          <span className="text-2xl text-purple-400 font-bold italic">&rdquo;</span>
+          <span className="text-2xl text-blue-400 font-bold italic">&rdquo;</span>
         </motion.div>
       </section>
 
@@ -558,7 +570,7 @@ export default function Portfolio() {
                   href="https://github.com/RSDMKZK"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-purple-400 transition-colors"
+                  className="text-white hover:text-blue-400 transition-colors"
                   whileHover={{ scale: 1.2 }}
                   title="GitHub Profile (RSDMKZK)"
                 >
@@ -587,7 +599,7 @@ export default function Portfolio() {
                 href="/cv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold shadow-md hover:from-purple-600 hover:to-blue-600 transition-colors text-base sm:text-lg mt-2 cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold shadow-md hover:from-blue-500 hover:to-cyan-500 transition-colors text-base sm:text-lg mt-2 cursor-pointer"
                 download
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6">
@@ -604,7 +616,7 @@ export default function Portfolio() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[380px] md:max-w-[400px] h-[360px] sm:h-[480px] md:h-[520px] mx-auto bg-gradient-to-br from-purple-600 to-blue-600 rounded-[2.5rem] flex items-center justify-center p-2 shadow-2xl relative">
+              <div className="w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[380px] md:max-w-[400px] h-[360px] sm:h-[480px] md:h-[520px] mx-auto bg-gradient-to-br from-blue-600 to-cyan-500 rounded-[2.5rem] flex items-center justify-center p-2 shadow-2xl relative">
                 <div className="w-full h-full bg-black rounded-[2.2rem] flex items-center justify-center overflow-hidden relative">
                   <img
                     src="/profile.png"
@@ -643,7 +655,7 @@ export default function Portfolio() {
                 viewport={{ once: true }}
               >
                 <div className="mb-2 sm:mb-4">
-                  <stat.icon className="mx-auto text-purple-400 sm:text-white w-8 h-8 sm:w-12 sm:h-12" />
+                  <stat.icon className="mx-auto text-blue-400 sm:text-white w-8 h-8 sm:w-12 sm:h-12" />
                 </div>
                 <h3 className="text-2xl sm:text-4xl font-black text-white mb-1 sm:mb-2">{stat.number}</h3>
                 <p className="text-white/80 font-bold tracking-wide text-xs sm:text-sm md:text-base">{stat.label}</p>
@@ -751,8 +763,8 @@ export default function Portfolio() {
                 description: "Cross-platform and native iOS & Android applications crafted for high performance and smooth experiences",
               },
               {
-                title: "SCHOOL PROJECTS",
-                description: "Final year projects for university students including reports writing and presentations with code implementation and AI turnitin report bypass",
+                title: "ACADEMIC SOFTWARE DEV",
+                description: "Engineering, system design, and research prototyping for academic and university initiatives",
               },
               {
                 title: "UI/UX DESIGN",
@@ -777,14 +789,14 @@ export default function Portfolio() {
             ].map((service, index) => (
               <motion.div
                 key={service.title}
-                className="bg-black p-6 sm:p-8 rounded-xl sm:rounded-2xl border border-gray-800 hover:border-purple-500 transition-colors cursor-pointer hover:scale-[1.02] hover:-translate-y-1 hover:shadow-xl duration-300"
+                className="bg-black p-6 sm:p-8 rounded-xl sm:rounded-2xl border border-gray-800 hover:border-blue-500 transition-colors cursor-pointer hover:scale-[1.02] hover:-translate-y-1 hover:shadow-xl duration-300"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
               >
-                <h3 className="text-xl sm:text-2xl font-black tracking-wide mb-3 sm:mb-4 text-purple-400">{service.title}</h3>
+                <h3 className="text-xl sm:text-2xl font-black tracking-wide mb-3 sm:mb-4 text-blue-400">{service.title}</h3>
                 <p className="text-gray-400 text-sm sm:text-base mb-2 leading-relaxed">{service.description}</p>
               </motion.div>
             ))}
@@ -792,9 +804,8 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Projects Section */}
+      {/* Projects & Products Section */}
       <section id="projects" ref={projectsRef} className="projects-section py-16 sm:py-24 md:py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden bg-black">
-        <div className="absolute inset-0"></div>
         <div className="absolute inset-0">
           <div className="white-dot absolute top-20 left-20 w-2 h-2 bg-white rounded-full opacity-60"></div>
           <div className="white-dot absolute top-40 right-32 w-3 h-3 bg-white rounded-full opacity-40"></div>
@@ -805,44 +816,48 @@ export default function Portfolio() {
           <div className="white-dot absolute bottom-60 left-1/3 w-2 h-2 bg-white rounded-full opacity-60"></div>
           <div className="white-dot absolute top-80 right-20 w-1 h-1 bg-white rounded-full opacity-90"></div>
         </div>
-        <div className="max-w-6xl mx-auto relative z-10">
-          <motion.h2
-            className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tight mb-10 sm:mb-16 text-center break-words"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            PROJECTS
-          </motion.h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {[
-              {
-                title: "E-COMMERCE PLATFORM",
-                tech: "Next.js, Stripe, PostgreSQL",
-                image: "/project.png",
-              },
-              {
-                title: "PORTFOLIO WEBSITE",
-                tech: "React, GSAP, Framer Motion",
-                image: "/project.png",
-              },
-              { title: "MOBILE APP", tech: "Flutter, React Native, Firebase, supabase", image: "/project.png" },
-              {
-                title: "WEB3 DASHBOARD",
-                tech: "React, Web3.js, Ethereum",
-                image: "/project.png",
-              },
-              { title: "AI CHATBOT", tech: "Python, OpenAI, FastAPI, Flask, Gemini", image: "/project.png" },
-              {
-                title: "GAME PLATFORM",
-                tech: "Three.js, WebGL, Socket.io",
-                image: "/project.png",
-              },
-            ].map((project, index) => (
-              <ProjectCard key={project.title} project={project} index={index} />
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs sm:text-sm font-semibold mb-4">
+              <Sparkles className="w-4 h-4 text-blue-400" />
+              <span>Products & Platforms</span>
+            </div>
+            <motion.h2
+              className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tight mb-4 text-center break-words text-white uppercase"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              SELECTED WORK
+            </motion.h2>
+            <p className="text-lg sm:text-2xl text-gray-300 font-medium leading-relaxed">
+              &ldquo;I don&apos;t just know how to code. I build products.&rdquo;
+            </p>
+            <p className="text-sm sm:text-base text-gray-400 mt-2">
+              Real platforms, systems, and case studies engineered from frontend to deployment.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
+            {productsData.slice(0, 4).map((product, index) => (
+              <FeaturedProductCard key={product.id} product={product} index={index} />
             ))}
+          </div>
+
+          {/* Banner link leading directly to dedicated Work page */}
+          <div className="mt-14 sm:mt-16 text-center">
+            <Link
+              href="/work"
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-extrabold text-base sm:text-lg tracking-wide shadow-2xl hover:scale-105 active:scale-95 transition-all"
+            >
+              <span>EXPLORE ALL 10 PRODUCTS & CASE STUDIES</span>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+            <p className="text-xs text-gray-500 mt-3 font-mono">
+              Filter by Fintech, EdTech, AI, LegalTech, Mobile & Creative Experiments
+            </p>
           </div>
         </div>
       </section>
@@ -850,7 +865,7 @@ export default function Portfolio() {
       {/* Testimonials Section */}
       <TestimonialsSection />
 
-      {/* Contact Section with Purple Background and White Dots */}
+      {/* Contact Section with Blue Background and White Dots */}
       <section id="contact" className="py-16 sm:py-24 md:py-32 px-4 md:px-8 lg:px-16 bg-black relative overflow-hidden">
         {/* Animated White Dots */}
         <div className="absolute inset-0">
@@ -885,7 +900,7 @@ export default function Portfolio() {
           </motion.h2>
 
           <motion.p
-            className="text-base sm:text-lg md:text-2xl text-purple-100 mb-8 sm:mb-12 max-w-2xl mx-auto px-2"
+            className="text-base sm:text-lg md:text-2xl text-blue-100 mb-8 sm:mb-12 max-w-2xl mx-auto px-2"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -922,7 +937,7 @@ export default function Portfolio() {
               © {new Date().getFullYear()} Abdullahi M Siba. All rights reserved.
             </p>
             <div className="flex items-center gap-5">
-              <Link href="/contact" className="hover:text-purple-400 transition-colors">
+              <Link href="/contact" className="hover:text-blue-400 transition-colors">
                 Contact
               </Link>
             </div>
@@ -954,7 +969,7 @@ function TabSwitcher() {
         {/* Animated indicator */}
         <div
           ref={indicatorRef}
-          className="absolute top-1 left-0 h-[calc(100%-0.5rem)] rounded-full bg-gradient-to-r from-purple-500/80 to-blue-500/80 shadow-lg transition-all duration-500 ease-[cubic-bezier(.4,2,.6,1)] z-0 hidden sm:block"
+          className="absolute top-1 left-0 h-[calc(100%-0.5rem)] rounded-full bg-gradient-to-r from-blue-600/80 to-cyan-500/80 shadow-lg transition-all duration-500 ease-[cubic-bezier(.4,2,.6,1)] z-0 hidden sm:block"
           style={{ left: indicatorStyle.left, width: indicatorStyle.width, pointerEvents: 'none' }}
         />
         {tabNames.map((tab, idx) => (
@@ -962,8 +977,8 @@ function TabSwitcher() {
             key={tab}
             ref={(el) => { tabRefs.current[idx] = el }}
             onClick={() => setSkillTab(idx)}
-            className={`relative z-10 px-3.5 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm md:text-base font-bold font-mono rounded-xl sm:rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-400 cursor-pointer
-              ${skillTab === idx ? 'text-white scale-102 sm:scale-105 bg-gradient-to-r from-purple-600/80 to-blue-600/80 shadow' : 'text-gray-300 hover:text-white'}`}
+            className={`relative z-10 px-3.5 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm md:text-base font-bold font-mono rounded-xl sm:rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer
+              ${skillTab === idx ? 'text-white scale-102 sm:scale-105 bg-gradient-to-r from-blue-600/80 to-cyan-600/80 shadow' : 'text-gray-300 hover:text-white'}`}
             role="tab"
             aria-selected={skillTab === idx}
             tabIndex={0}
@@ -1010,7 +1025,7 @@ function TabContent({ skillTab }: { skillTab: number }) {
               viewport={{ once: true }}
             >
               <div className="mb-4 sm:mb-6">
-                <category.icon className="mx-auto text-purple-400 w-10 h-10 sm:w-12 sm:h-12" />
+                <category.icon className="mx-auto text-blue-400 w-10 h-10 sm:w-12 sm:h-12" />
               </div>
               <h3 className="text-xl sm:text-2xl font-black tracking-wide mb-3 sm:mb-4 text-white">{category.title}</h3>
               <div className="space-y-3">
@@ -1019,7 +1034,7 @@ function TabContent({ skillTab }: { skillTab: number }) {
                     <div className="text-sm sm:text-base text-gray-200 mb-1 font-semibold tracking-wide">{skill}</div>
                     <div className="w-full bg-gray-700 h-1.5 rounded-full">
                       <div
-                        className="skills-progress h-1.5 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full"
+                        className="skills-progress h-1.5 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full"
                         style={{ width: "100%" }}
                       ></div>
                     </div>
@@ -1085,7 +1100,7 @@ function TabContent({ skillTab }: { skillTab: number }) {
           ].map((tool, index) => (
             <motion.div
               key={tool}
-              className="bg-black/80 border border-purple-600/70 rounded-xl sm:rounded-2xl p-3 sm:p-5 text-center text-white font-semibold text-xs sm:text-sm md:text-base shadow-md transition-all duration-300 cursor-pointer hover:scale-[1.04] hover:-translate-y-1 hover:border-purple-400 hover:shadow-xl truncate"
+              className="bg-black/80 border border-blue-600/70 rounded-xl sm:rounded-2xl p-3 sm:p-5 text-center text-white font-semibold text-xs sm:text-sm md:text-base shadow-md transition-all duration-300 cursor-pointer hover:scale-[1.04] hover:-translate-y-1 hover:border-blue-400 hover:shadow-xl truncate"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.02 }}
@@ -1100,59 +1115,133 @@ function TabContent({ skillTab }: { skillTab: number }) {
   );
 }
 
-function ProjectCard({ project, index }: { project: { title: string; tech: string; image: string }, index: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+function FeaturedProductCard({ product, index }: { product: ProductCaseStudy; index: number }) {
+  const cardRef = useRef<HTMLDivElement>(null)
+  const [tilt, setTilt] = useState({ x: 0, y: 0 })
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    const card = cardRef.current;
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    // Max tilt angle
-    const maxTilt = 15;
-    const tiltX = ((y - centerY) / centerY) * maxTilt;
-    const tiltY = ((x - centerX) / centerX) * maxTilt;
-    setTilt({ x: tiltX, y: tiltY });
+    const card = cardRef.current
+    if (!card) return
+    const rect = card.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    const centerX = rect.width / 2
+    const centerY = rect.height / 2
+    const maxTilt = 8
+    const tiltX = ((y - centerY) / centerY) * maxTilt
+    const tiltY = ((x - centerX) / centerX) * maxTilt
+    setTilt({ x: tiltX, y: tiltY })
   }
 
   function handleMouseLeave() {
-    setTilt({ x: 0, y: 0 });
+    setTilt({ x: 0, y: 0 })
+  }
+
+  const getStatusBadge = (status: ProductCaseStudy['status']) => {
+    switch (status) {
+      case 'LIVE':
+        return (
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            Live / Production
+          </span>
+        )
+      case 'ACADEMIC PROJECT':
+        return (
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-blue-500/10 text-blue-300 border border-blue-500/30">
+            Academic Project
+          </span>
+        )
+      case 'PROTOTYPE':
+        return (
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-blue-500/10 text-blue-300 border border-blue-500/30">
+            Working Prototype
+          </span>
+        )
+      default:
+        return (
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-gray-500/10 text-gray-300 border border-gray-500/30">
+            {status}
+          </span>
+        )
+    }
   }
 
   return (
     <motion.div
       ref={cardRef}
-      className="group relative flex flex-col items-center bg-gradient-to-br from-white/5 to-black/60 border border-gray-800 rounded-2xl shadow-xl px-8 pt-8 pb-6 transition-all duration-300 hover:shadow-[0_8px_40px_0_rgba(162,89,247,0.18)] hover:-translate-y-2 hover:scale-[1.04] cursor-pointer min-h-[420px]"
-      initial={{ opacity: 0, y: 50 }}
+      className="group relative flex flex-col justify-between bg-zinc-950/90 border border-white/10 hover:border-blue-500/60 rounded-3xl p-6 sm:p-8 shadow-xl transition-all duration-300 hover:shadow-[0_12px_48px_0_rgba(59,130,246,0.2)] hover:-translate-y-1.5"
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.08 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
       viewport={{ once: true }}
       style={{
-        transform: `perspective(900px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1)`,
+        transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
         willChange: 'transform',
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="w-full flex justify-center">
-        <div className="w-28 h-28 rounded-xl overflow-hidden border-4 border-white/10 bg-gradient-to-br from-purple-700/80 to-blue-700/80 shadow-lg group-hover:scale-105 transition-transform duration-500">
-          <img
-            src={project.image || "/placeholder.svg"}
-            alt={project.title}
-            className="w-full h-full object-cover object-center"
-            style={{ aspectRatio: '1/1' }}
-          />
+      <div>
+        <div className="flex items-center justify-between gap-4 mb-4">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl font-black text-blue-400 font-mono">
+              {product.projectNumber}
+            </span>
+            <span className="text-xs font-bold tracking-widest uppercase text-gray-400">
+              {product.category}
+            </span>
+          </div>
+          {getStatusBadge(product.status)}
+        </div>
+
+        <h3 className="text-2xl sm:text-3xl font-black text-white group-hover:text-blue-300 transition-colors tracking-tight mb-2">
+          {product.title}
+        </h3>
+        <p className="text-sm sm:text-base text-gray-300 mb-5 leading-relaxed font-normal">
+          {product.oneLineDescription}
+        </p>
+
+        <div className="bg-black/50 border border-white/5 rounded-2xl p-4 mb-5 space-y-2 text-xs">
+          <div>
+            <span className="text-gray-400 font-semibold uppercase text-[10px] tracking-wider block">Problem:</span>
+            <p className="text-gray-200 leading-snug">{product.whatProblemDoesItSolve}</p>
+          </div>
+          <div>
+            <span className="text-blue-300 font-semibold uppercase text-[10px] tracking-wider block">What Abdullahi Built:</span>
+            <p className="text-gray-200 leading-snug">{product.whatDidAbdullahiBuild}</p>
+          </div>
+        </div>
+
+        <div className="mb-6">
+          <span className="text-[11px] uppercase font-bold tracking-wider text-gray-500 block mb-2">
+            Technologies:
+          </span>
+          <div className="flex flex-wrap gap-1.5">
+            {product.tags.slice(0, 5).map((tag) => (
+              <span key={tag} className="px-2 py-0.5 rounded-md text-[11px] font-mono bg-white/5 border border-white/10 text-gray-300">
+                {tag}
+              </span>
+            ))}
+            {product.tags.length > 5 && (
+              <span className="px-2 py-0.5 rounded-md text-[11px] font-mono text-gray-500">
+                +{product.tags.length - 5}
+              </span>
+            )}
+          </div>
         </div>
       </div>
-      <div className="flex-1 flex flex-col items-center text-center w-full mt-8">
-        <h3 className="text-xl font-extrabold tracking-tight mb-2 text-white drop-shadow-lg leading-tight min-h-[56px] flex items-center justify-center">{project.title}</h3>
-        <p className="text-gray-300 text-base mb-6 font-mono">{project.tech}</p>
-        <button className="w-full mt-auto px-0 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-base shadow-md hover:from-purple-600 hover:to-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-400 active:scale-95">View Project</button>
+
+      <div className="pt-4 border-t border-white/5 flex items-center justify-between gap-3 mt-auto">
+        <span className="text-xs text-gray-400 font-mono">{product.year}</span>
+        <Link
+          href={`/work/${product.slug}`}
+          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white text-xs font-bold transition-all group-hover:scale-105 shadow-md"
+        >
+          <span>View Case Study</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </Link>
       </div>
     </motion.div>
-  );
+  )
 }

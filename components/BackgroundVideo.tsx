@@ -111,7 +111,7 @@ export default function BackgroundVideo({
           title="Adjust Background Contrast"
           aria-label="Adjust Background Contrast"
         >
-          <Video className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-400" />
+          <Video className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400" />
         </button>
 
         <button

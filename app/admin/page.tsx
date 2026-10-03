@@ -212,16 +212,16 @@ export default function AdminDashboardPage() {
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-black flex flex-col justify-center items-center px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-tr from-purple-950/30 via-black to-blue-950/20" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-blue-950/40 via-black to-blue-950/20" />
 
         <motion.div
-          className="relative z-10 w-full max-w-md bg-zinc-950 border border-purple-500/40 rounded-3xl p-8 shadow-2xl"
+          className="relative z-10 w-full max-w-md bg-zinc-950 border border-blue-500/40 rounded-3xl p-8 shadow-2xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           <div className="text-center mb-8">
-            <div className="w-16 h-16 rounded-2xl bg-purple-600/20 border border-purple-500/40 text-purple-400 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-purple-500/10">
+            <div className="w-16 h-16 rounded-2xl bg-blue-600/20 border border-blue-500/40 text-blue-400 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-blue-500/10">
               <Lock size={30} />
             </div>
             <h1 className="text-2xl font-black tracking-tight text-white">Admin Portal</h1>
@@ -246,18 +246,18 @@ export default function AdminDashboardPage() {
                 value={passkey}
                 onChange={(e) => setPasskey(e.target.value)}
                 placeholder="Enter passkey (default: siba2025)"
-                className="w-full px-4 py-3 bg-black border border-gray-800 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 transition-colors text-sm"
+                className="w-full px-4 py-3 bg-black border border-gray-800 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 transition-colors text-sm"
                 autoFocus
               />
               <p className="text-[11px] text-gray-500 mt-2">
-                Default key is <code className="text-purple-400 bg-purple-950/40 px-1 py-0.5 rounded">siba2025</code> (or configure via <code className="text-gray-400">ADMIN_SECRET_KEY</code>)
+                Default key is <code className="text-blue-400 bg-blue-950/40 px-1 py-0.5 rounded">siba2025</code> (or configure via <code className="text-gray-400">ADMIN_SECRET_KEY</code>)
               </p>
             </div>
 
             <button
               type="submit"
               disabled={isVerifying}
-              className="w-full py-3.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold rounded-xl hover:from-purple-500 hover:to-blue-500 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer shadow-lg shadow-purple-600/25"
+              className="w-full py-3.5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold rounded-xl hover:from-blue-500 hover:to-cyan-500 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer shadow-lg shadow-blue-600/25"
             >
               {isVerifying ? (
                 <>
@@ -299,7 +299,7 @@ export default function AdminDashboardPage() {
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-base sm:text-lg font-black tracking-tight text-white">Abdullahi Siba</h1>
-                <span className="text-[10px] font-mono uppercase bg-purple-950 border border-purple-500/40 text-purple-300 px-2 py-0.5 rounded-full">
+                <span className="text-[10px] font-mono uppercase bg-blue-950 border border-blue-500/40 text-blue-300 px-2 py-0.5 rounded-full">
                   Admin
                 </span>
               </div>
@@ -340,7 +340,7 @@ export default function AdminDashboardPage() {
           <div className="p-6 rounded-2xl bg-zinc-950 border border-gray-800 shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Total Inquiries</span>
-              <Mail size={18} className="text-purple-400" />
+              <Mail size={18} className="text-blue-400" />
             </div>
             <div className="text-3xl font-black text-white">{messages.length}</div>
             <p className="text-xs text-gray-500 mt-1">Direct from contact form</p>
@@ -402,14 +402,14 @@ export default function AdminDashboardPage() {
             onClick={() => setActiveTab('messages')}
             className={`flex items-center gap-2 pb-3 px-4 font-bold text-sm border-b-2 transition-colors cursor-pointer ${
               activeTab === 'messages'
-                ? 'border-purple-500 text-white'
+                ? 'border-blue-500 text-white'
                 : 'border-transparent text-gray-400 hover:text-gray-200'
             }`}
           >
             <Mail size={16} />
             <span>Messages Inbox</span>
             {unreadCount > 0 && (
-              <span className="px-2 py-0.5 rounded-full text-[10px] bg-purple-600 text-white font-mono">
+              <span className="px-2 py-0.5 rounded-full text-[10px] bg-blue-600 text-white font-mono">
                 {unreadCount}
               </span>
             )}
@@ -419,7 +419,7 @@ export default function AdminDashboardPage() {
             onClick={() => setActiveTab('testimonials')}
             className={`flex items-center gap-2 pb-3 px-4 font-bold text-sm border-b-2 transition-colors cursor-pointer ${
               activeTab === 'testimonials'
-                ? 'border-purple-500 text-white'
+                ? 'border-blue-500 text-white'
                 : 'border-transparent text-gray-400 hover:text-gray-200'
             }`}
           >
@@ -440,7 +440,7 @@ export default function AdminDashboardPage() {
                   placeholder="Search by name, email, or message..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 bg-zinc-950 border border-gray-800 rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
+                  className="w-full pl-10 pr-4 py-2.5 bg-zinc-950 border border-gray-800 rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
                 />
               </div>
 
@@ -448,7 +448,7 @@ export default function AdminDashboardPage() {
                 <button
                   onClick={() => setStatusFilter('all')}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
-                    statusFilter === 'all' ? 'bg-purple-600 text-white' : 'text-gray-400 hover:text-white'
+                    statusFilter === 'all' ? 'bg-blue-600 text-white' : 'text-gray-400 hover:text-white'
                   }`}
                 >
                   All ({messages.length})
@@ -456,7 +456,7 @@ export default function AdminDashboardPage() {
                 <button
                   onClick={() => setStatusFilter('unread')}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
-                    statusFilter === 'unread' ? 'bg-purple-600 text-white' : 'text-gray-400 hover:text-white'
+                    statusFilter === 'unread' ? 'bg-blue-600 text-white' : 'text-gray-400 hover:text-white'
                   }`}
                 >
                   Unread ({unreadCount})
@@ -464,7 +464,7 @@ export default function AdminDashboardPage() {
                 <button
                   onClick={() => setStatusFilter('read')}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
-                    statusFilter === 'read' ? 'bg-purple-600 text-white' : 'text-gray-400 hover:text-white'
+                    statusFilter === 'read' ? 'bg-blue-600 text-white' : 'text-gray-400 hover:text-white'
                   }`}
                 >
                   Read ({messages.length - unreadCount})
@@ -490,7 +490,7 @@ export default function AdminDashboardPage() {
                     className={`p-5 rounded-2xl border transition-all duration-200 cursor-pointer ${
                       msg.read
                         ? 'bg-zinc-950/60 border-gray-800/80 hover:border-gray-700'
-                        : 'bg-zinc-950 border-purple-500/40 shadow-lg shadow-purple-950/20 hover:border-purple-400'
+                        : 'bg-zinc-950 border-blue-500/40 shadow-lg shadow-blue-950/20 hover:border-blue-400'
                     }`}
                     onClick={() => {
                       setSelectedMessage(msg)
@@ -501,7 +501,7 @@ export default function AdminDashboardPage() {
                       <div className="flex items-start gap-3.5">
                         <div
                           className={`mt-1 w-2.5 h-2.5 rounded-full shrink-0 ${
-                            msg.read ? 'bg-transparent border border-gray-600' : 'bg-purple-400 shadow-sm shadow-purple-400'
+                            msg.read ? 'bg-transparent border border-gray-600' : 'bg-blue-400 shadow-sm shadow-blue-400'
                           }`}
                         />
                         <div>
@@ -509,12 +509,12 @@ export default function AdminDashboardPage() {
                             <span className="font-bold text-white text-base">{msg.name}</span>
                             <span className="text-xs text-gray-400 font-mono">({msg.email})</span>
                             {!msg.read && (
-                              <span className="px-2 py-0.5 rounded-full text-[10px] bg-purple-500/20 text-purple-300 border border-purple-500/30 font-semibold">
+                              <span className="px-2 py-0.5 rounded-full text-[10px] bg-blue-500/20 text-blue-300 border border-blue-500/30 font-semibold">
                                 New
                               </span>
                             )}
                           </div>
-                          <h4 className="text-sm font-semibold text-purple-300 mt-0.5">{msg.subject}</h4>
+                          <h4 className="text-sm font-semibold text-blue-300 mt-0.5">{msg.subject}</h4>
                           <p className="text-xs text-gray-400 line-clamp-2 mt-1 max-w-3xl leading-relaxed">
                             {msg.message}
                           </p>
@@ -548,7 +548,7 @@ export default function AdminDashboardPage() {
                             className="p-2 rounded-lg bg-zinc-900 text-gray-300 hover:text-white hover:bg-zinc-800 transition-colors cursor-pointer"
                             title={msg.read ? 'Mark as Unread' : 'Mark as Read'}
                           >
-                            <CheckCircle size={15} className={msg.read ? 'text-purple-400' : 'text-gray-500'} />
+                            <CheckCircle size={15} className={msg.read ? 'text-blue-400' : 'text-gray-500'} />
                           </button>
 
                           <button
@@ -574,7 +574,7 @@ export default function AdminDashboardPage() {
           <div className="space-y-4">
             <div className="p-4 rounded-xl bg-zinc-950 border border-gray-800 text-xs text-gray-400 flex items-center justify-between">
               <span>All testimonials currently saved in Supabase:</span>
-              <Link href="/#testimonials" className="text-purple-400 hover:underline flex items-center gap-1">
+              <Link href="/#testimonials" className="text-blue-400 hover:underline flex items-center gap-1">
                 <span>View on portfolio</span>
                 <ExternalLink size={12} />
               </Link>
@@ -625,7 +625,7 @@ export default function AdminDashboardPage() {
             />
 
             <motion.div
-              className="relative w-full max-w-2xl bg-zinc-950 border border-purple-500/40 rounded-2xl p-6 md:p-8 shadow-2xl z-10 max-h-[90vh] overflow-y-auto"
+              className="relative w-full max-w-2xl bg-zinc-950 border border-blue-500/40 rounded-2xl p-6 md:p-8 shadow-2xl z-10 max-h-[90vh] overflow-y-auto"
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -639,13 +639,13 @@ export default function AdminDashboardPage() {
               </button>
 
               <div className="mb-6">
-                <span className="text-[10px] font-mono text-purple-400 uppercase tracking-widest bg-purple-950/50 px-2.5 py-1 rounded-full border border-purple-800/40">
+                <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest bg-blue-950/50 px-2.5 py-1 rounded-full border border-blue-800/40">
                   Client Message
                 </span>
                 <h2 className="text-2xl font-black text-white mt-3">{selectedMessage.subject}</h2>
                 <div className="flex flex-wrap items-center gap-4 text-xs text-gray-400 mt-2">
                   <span>From: <strong className="text-white">{selectedMessage.name}</strong></span>
-                  <span>Email: <a href={`mailto:${selectedMessage.email}`} className="text-purple-400 hover:underline">{selectedMessage.email}</a></span>
+                  <span>Email: <a href={`mailto:${selectedMessage.email}`} className="text-blue-400 hover:underline">{selectedMessage.email}</a></span>
                   {selectedMessage.created_at && (
                     <span>{new Date(selectedMessage.created_at).toLocaleString()}</span>
                   )}
@@ -677,7 +677,7 @@ export default function AdminDashboardPage() {
 
                   <a
                     href={`mailto:${selectedMessage.email}?subject=Re: ${encodeURIComponent(selectedMessage.subject)}`}
-                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs font-semibold hover:from-purple-500 hover:to-blue-500 flex items-center justify-center gap-2 shadow-md shadow-purple-600/30 transition-all text-center"
+                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-xs font-semibold hover:from-blue-500 hover:to-cyan-500 flex items-center justify-center gap-2 shadow-md shadow-blue-600/30 transition-all text-center"
                   >
                     <Send size={14} />
                     <span>Reply via Email</span>

@@ -126,7 +126,7 @@ export default function TestimonialsSection() {
 
           <motion.button
             onClick={() => setIsModalOpen(true)}
-            className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm sm:text-base font-semibold hover:from-purple-500 hover:to-blue-500 shadow-lg shadow-purple-600/30 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-sm sm:text-base font-semibold hover:from-blue-500 hover:to-cyan-500 shadow-lg shadow-blue-600/30 hover:scale-105 active:scale-95 transition-all cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -140,7 +140,7 @@ export default function TestimonialsSection() {
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id || `${testimonial.name}-${index}`}
-              className="bg-black/90 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-gray-800 hover:border-purple-500/80 transition-all duration-300 hover-lift flex flex-col justify-between shadow-xl"
+              className="bg-black/90 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-gray-800 hover:border-blue-500/80 transition-all duration-300 hover-lift flex flex-col justify-between shadow-xl"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: Math.min(index * 0.1, 0.5) }}
@@ -158,7 +158,7 @@ export default function TestimonialsSection() {
                       />
                     ))}
                   </div>
-                  <MessageSquareQuote size={20} className="text-purple-400/40" />
+                  <MessageSquareQuote size={20} className="text-blue-400/40" />
                 </div>
 
                 <p className="text-gray-300 mb-6 leading-relaxed italic">
@@ -199,7 +199,7 @@ export default function TestimonialsSection() {
             />
 
             <motion.div
-              className="relative w-full max-w-lg bg-zinc-950 border border-purple-500/40 rounded-2xl p-5 sm:p-8 shadow-2xl z-10 max-h-[90vh] overflow-y-auto"
+              className="relative w-full max-w-lg bg-zinc-950 border border-blue-500/40 rounded-2xl p-5 sm:p-8 shadow-2xl z-10 max-h-[90vh] overflow-y-auto"
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -228,7 +228,7 @@ export default function TestimonialsSection() {
               ) : (
                 <>
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="p-2.5 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                    <div className="p-2.5 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
                       <Sparkles size={20} />
                     </div>
                     <div>
@@ -256,7 +256,7 @@ export default function TestimonialsSection() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="e.g. Alex Johnson"
-                        className="w-full px-4 py-2.5 bg-black border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors text-sm"
+                        className="w-full px-4 py-2.5 bg-black border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
                       />
                     </div>
 
@@ -269,7 +269,7 @@ export default function TestimonialsSection() {
                         value={role}
                         onChange={(e) => setRole(e.target.value)}
                         placeholder="e.g. Founder, InnovateX / Client"
-                        className="w-full px-4 py-2.5 bg-black border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors text-sm"
+                        className="w-full px-4 py-2.5 bg-black border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
                       />
                     </div>
 
@@ -313,7 +313,7 @@ export default function TestimonialsSection() {
                         value={text}
                         onChange={(e) => setText(e.target.value)}
                         placeholder="How was your experience working together? What were the standout results?"
-                        className="w-full px-4 py-2.5 bg-black border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors text-sm resize-none"
+                        className="w-full px-4 py-2.5 bg-black border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm resize-none"
                       />
                     </div>
 
@@ -329,7 +329,7 @@ export default function TestimonialsSection() {
                       <button
                         type="submit"
                         disabled={submitting}
-                        className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs font-semibold hover:from-purple-500 hover:to-blue-500 shadow-md shadow-purple-600/30 transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
+                        className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-xs font-semibold hover:from-blue-500 hover:to-cyan-500 shadow-md shadow-blue-600/30 transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
                       >
                         {submitting ? (
                           <>
