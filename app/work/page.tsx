@@ -21,6 +21,7 @@ import {
   Hammer,
   Search,
   Eye,
+  FileText,
 } from 'lucide-react'
 
 type FilterCategory = 'ALL' | 'AI' | 'WEB' | 'MOBILE' | 'LEGALTECH' | 'EDTECH' | 'FINTECH' | 'EXPERIMENTS'
@@ -135,7 +136,14 @@ export default function WorkPage() {
             <span>Back to Home</span>
           </Link>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            <Link
+              href="/cv"
+              className="text-xs sm:text-sm font-semibold px-4 py-2 rounded-full border border-cyan-500/40 text-cyan-300 hover:bg-cyan-500/10 transition-colors flex items-center gap-1.5"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              <span>My CV</span>
+            </Link>
             <Link
               href="/#contact"
               className="text-xs sm:text-sm font-semibold px-4 py-2 rounded-full border border-blue-500/40 text-blue-300 hover:bg-blue-500/10 transition-colors"

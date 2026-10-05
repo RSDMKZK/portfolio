@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Send, ArrowLeft, Github, Linkedin, Twitter } from "lucide-react"
+import { Mail, Phone, MapPin, Send, ArrowLeft, Github, Linkedin, Twitter, FileText } from "lucide-react"
 import Link from "next/link"
 
 const BACKGROUND_DOTS = [
@@ -117,15 +117,23 @@ export default function ContactPage() {
 
       <div className="relative z-10">
         {/* Header */}
-        <header className="p-8">
+        <header className="p-6 sm:p-8 flex items-center justify-between">
           <Link href="/">
             <motion.div
               className="flex items-center gap-2 text-white hover:text-blue-300 transition-colors cursor-pointer inline-flex"
               whileHover={{ x: -5 }}
             >
-              <ArrowLeft size={24} />
-              <span className="font-bold">Back to Portfolio</span>
+              <ArrowLeft size={22} />
+              <span className="font-bold text-sm sm:text-base">Back to Portfolio</span>
             </motion.div>
+          </Link>
+
+          <Link
+            href="/cv"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-cyan-500/40 text-cyan-300 hover:bg-cyan-500/10 text-xs sm:text-sm font-semibold transition-colors"
+          >
+            <FileText size={14} />
+            <span>My CV</span>
           </Link>
         </header>
 

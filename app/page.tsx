@@ -23,13 +23,18 @@ import {
   Menu,
   X,
   Sparkles,
+  FileText,
+  Download,
+  Eye,
 } from "lucide-react"
 import Link from "next/link"
 import { AnimatePresence } from "framer-motion"
 import IntroVideo from "../components/IntroVideo"
 import BackgroundVideo from "../components/BackgroundVideo"
 import TestimonialsSection from "../components/TestimonialsSection"
+import CVViewerModal from "../components/CVViewerModal"
 import { productsData, ProductCaseStudy } from "@/lib/products"
+import { trackCvDownload } from "@/lib/trackCvDownload"
 // import SplashCursor from "../components/SplashCursor";
 
 // Register GSAP plugins
@@ -46,6 +51,7 @@ export default function Portfolio() {
   const [showHeader, setShowHeader] = useState(true);
   const [showIntro, setShowIntro] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [cvModalOpen, setCvModalOpen] = useState(false);
   const lastScrollY = useRef(0);
   const headerRef = useRef<HTMLDivElement>(null);
   const [skillTab, setSkillTab] = useState(0);
@@ -329,14 +335,6 @@ export default function Portfolio() {
           {/* Mobile Menu Toggle Button */}
           <div className="flex items-center gap-2 md:hidden">
             <button
-              onClick={() => setShowIntro(true)}
-              className="flex items-center gap-1 text-blue-300 hover:text-white font-semibold text-xs px-2.5 py-1 rounded-full border border-blue-500/30 bg-blue-500/10"
-              title="Replay Video Intro"
-            >
-              <Film className="w-3.5 h-3.5 text-blue-400" />
-              <span>Intro</span>
-            </button>
-            <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 text-white hover:text-blue-300 focus:outline-none"
               aria-label="Toggle menu"
@@ -348,14 +346,6 @@ export default function Portfolio() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-4 lg:gap-6">
-          <button
-            onClick={() => setShowIntro(true)}
-            className="flex items-center gap-1.5 text-blue-300 hover:text-white font-semibold text-sm transition-all px-3 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 hover:bg-blue-500/20 active:scale-95"
-            title="Replay Video Intro"
-          >
-            <Film className="w-4 h-4 text-blue-400" />
-            <span>Intro</span>
-          </button>
           <Link href="/work" className="text-blue-300 font-bold hover:text-white transition-colors px-3 py-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 flex items-center gap-1">
             <span>Work & Case Studies</span>
           </Link>
@@ -595,18 +585,26 @@ export default function Portfolio() {
                   <Mail size={28} className="sm:w-8 sm:h-8" />
                 </motion.a>
               </div>
-              <a
-                href="/cv.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold shadow-md hover:from-blue-500 hover:to-cyan-500 transition-colors text-base sm:text-lg mt-2 cursor-pointer"
-                download
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m0 0l-6-6m6 6l6-6" />
-                </svg>
-                My CV
-              </a>
+              <div className="flex flex-wrap items-center gap-3 mt-3">
+                <button
+                  type="button"
+                  onClick={() => setCvModalOpen(true)}
+                  className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold shadow-lg shadow-blue-600/30 hover:from-blue-500 hover:to-cyan-500 transition-all text-base sm:text-lg cursor-pointer hover:scale-105 active:scale-95"
+                >
+                  <Eye className="w-5 h-5" />
+                  <span>Preview CV</span>
+                </button>
+                <a
+                  href="/cv.pdf"
+                  download="Abdullahi_Mohammed_Siba_CV.pdf"
+                  onClick={() => trackCvDownload('about_section')}
+                  className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold transition-all text-sm sm:text-base cursor-pointer"
+                  title="Download CV PDF directly"
+                >
+                  <Download className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <span>Download</span>
+                </a>
+              </div>
             </div>
 
             <motion.div
@@ -937,6 +935,13 @@ export default function Portfolio() {
               © {new Date().getFullYear()} Abdullahi M Siba. All rights reserved.
             </p>
             <div className="flex items-center gap-5">
+              <button
+                type="button"
+                onClick={() => setCvModalOpen(true)}
+                className="hover:text-cyan-400 transition-colors cursor-pointer text-xs"
+              >
+                My CV
+              </button>
               <Link href="/contact" className="hover:text-blue-400 transition-colors">
                 Contact
               </Link>
@@ -944,6 +949,9 @@ export default function Portfolio() {
           </div>
         </div>
       </section>
+
+      {/* Interactive CV Viewer Modal */}
+      <CVViewerModal isOpen={cvModalOpen} onClose={() => setCvModalOpen(false)} />
     </div>
   )
 }
